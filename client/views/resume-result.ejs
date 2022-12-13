@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Result</title>
+</head>
+<body>
+    
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+    hr{
+        width: 100%;
+        color: black;
+    }
+    .main-container {
+        margin: auto;
+    }
+    .container {
+        width: 595px;
+        height: 842px;
+        background-color: white;
+    }
+    .inner-div-1{
+        float: left;
+    }
+    .inner-div-2{
+        float: right;
+    }
+</style>
+<div class="main-container">
+    <div class="container">
+
+        <div class="div-1">
+            <div class="inner-div-1">
+                <h1><%= name %></h1>
+            </div>
+            <div class="inner-div-2">
+                <p><%= email %></p>
+                <p><%= tel %></p>
+                <p><%= address %></p>
+            </div>
+        </div>
+        <hr>
+        <div class="div-2">
+            <h5><%= introduction %></5>
+        </div>
+        <h3>Education</h3>
+        <hr>
+        <div class="div-3">
+            <h5><%= education %></5>
+        </div>
+        <h3>Skills</h3>
+        <hr>
+        <div class="div-4">
+            <h5><%= skills %></5>
+        </div>
+        <h3>Experiences</h3>
+        <hr>
+        <div class="div-5">
+            <h5><%= experiences %></5>
+        </div>
+        <% if (certifications.length > 0) { %>
+            <h3>Certifications</h3>
+            <hr>
+            <div class="div-5">
+            <h5><%= certifications %></5>
+            </div>
+        <% } %>
+    </div>
+    <button id="print-button" onclick="hideButton(this)">Print Your Resume</button>
+</div>
+    
+<script>
+    function hideButton(x){
+        x.style.display = "none";
+        window.print();
+        setTimeout(function() {
+            x.style.display = "block";
+        }, 10);
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+</head>
+<body>
+    <h1>CV Builder</h1>
+<form action="/resume" method="post">
+    <div class="col-1">
+        <h3>Contact</h3>
+        <input type="text" name="user_name" placeholder="Enter your name">
+        <br>
+        <input type="email" name="user_email" placeholder="Enter your email">
+        <br>
+        <input type="tel" name="user_tel" placeholder="Enter your phone no">
+        <br>
+        <input type="text" name="user_address" placeholder="Enter your address">
+        <br>
+
+        <h3>Introduction</h3>
+        <textarea name="user_introduction" cols="60" rows="8" placeholder="Introduce your self" maxlength="250" minlength="200" required></textarea>
+    </div>
+
+    <div class="col-2">
+        <h3>Education</h3>
+        <textarea name="user_education" cols="60" rows="8" placeholder="Add your education and qualifications" maxlength="250" minlength="200" required></textarea>
+        <br>
+
+        <h3>Experience</h3>
+        <textarea name="user_experience" cols="60" rows="8" placeholder="Add your experiences" maxlength="250" minlength="200" required></textarea>
+    </div>
+
+    <div class="col-3">
+        <h3>Skills</h3>
+        <textarea name="user_skills" cols="60" rows="8" placeholder="Enter your skills" maxlength="250" minlength="200" required></textarea>
+        <br>
+
+        <h3>Certifications</h3>
+        <textarea name="user_certifications" cols="60" rows="8" placeholder="Enter your certifications (Optional)"maxlength="250" minlength="200"></textarea>
+    </div>
+    <button type="submit">Submit details</button>
+</form>
+</body>
+</html>
