@@ -8,10 +8,20 @@
 </head>
 <body>
     <form action="/signup" method="post">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id=""><br>
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" id=""><br>
         <label for="username">Email</label>
         <input type="text" name="username" id=""><br>
         <label for="password">Password</label>
         <input type="password" name="password" id=""><br>
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" name="confirmPassword" id=""><br>
+        <input type="radio" name="type" value="0" id="student">
+        <label for="student">Student</label>
+        <input type="radio" name="type" value="1" id="counsellor">
+        <label for="counsellor">Counsellor</label>
         <button type="submit">Sign Up</button>
     </form>
 </body>

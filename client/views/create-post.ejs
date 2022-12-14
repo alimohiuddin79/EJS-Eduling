@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Post</title>
+</head>
+<body>
+    <!-- Submit New Post -->
+<form class="" action="/blogs" method="post" enctype="multipart/form-data">
+    <label for="title">Title:</label>
+    <input type="text" name="title">
+    <label for="content">Write something:</label>
+    <input type="text" name="content">
+    <label for="postImage">Upload image:</label>
+    <input type="file" name="postImage" required id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp">
+    <button type="submit" name="button">Submit</button>
+  </form>
+  
+  <script>
+  let uploadField = document.getElementById("file");
+  
+  uploadField.onchange = function() {
+      if(this.files[0].size > 1048576){
+         alert("File is too big!");
+         this.value = "";
+      };
+  };
+  </script>
+</body>
+</html>

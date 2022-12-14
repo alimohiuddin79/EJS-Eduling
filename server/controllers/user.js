@@ -13,16 +13,24 @@ const getSignup = function(req, res){
 }
 
 const postSignup = function(req, res){
-    User.register({username: req.body.username}, req.body.password, function(err, user){
-        if(err){
-            console.log(err);
-            res.redirect("/signup");
-        } else {
-            passport.authenticate("local")(req, res, function(){
-                res.redirect("/compose");
-            });
-        }
-    })
+    let {username, password, confirmPassword, firstName, lastName, type} = req.body;
+    let name = firstName + " " + lastName;
+    type = parseInt(type);
+
+    if(password !== confirmPassword){
+        res.redirect("/signup");
+    } else {
+        User.register({username: username, name: name, type: type}, password, function(err, user){
+            if(err){
+                console.log(err);
+                res.redirect("/signup");
+            } else {
+                passport.authenticate("local")(req, res, function(){
+                    res.redirect("/compose");
+                });
+            }
+        });
+    }
 }
 
 // Login controllers
