@@ -9,7 +9,7 @@ const app = express.Router();
 
 // Initialize multer
 const storage = multer.diskStorage({
-    destination: "../../client/public/uploads/",
+    destination: "../client/public/uploads/",
     limits: { fileSize: 1000000 },
     filename: function(req, file, cb) {
       cb(null, file.fieldname + "-" + Date.now());
@@ -19,7 +19,7 @@ const upload = multer({storage: storage});
 
 const getBlogs = app.get("/blogs", function(req, res){
     // Deleting all files in uploads folder
-    const directory = __dirname + '/../../../client/public/uploads/';
+    const directory = __dirname + '/../../client/public/uploads/';
 
     fs.readdir(directory, function(err, files){
     if (err) throw err;
@@ -58,7 +58,7 @@ const postCreatePost = app.post("/create", upload.single('postImage'), function(
     const title = req.body.title;
     const content = req.body.content;
     const imgType = req.file.mimetype;
-    const imgData = fs.readFileSync(path.join(__dirname + '/../../../client/public/uploads/' + req.file.filename));
+    const imgData = fs.readFileSync(path.join(__dirname + '/../../client/public/uploads/' + req.file.filename));
   
     Blog.create({title: title, content: content, titleImg: {data: imgData, contentType: imgType}}, function(err){
       if(err){
