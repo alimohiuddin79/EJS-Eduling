@@ -25,6 +25,19 @@ const userSchema = new mongoose.Schema({
         type: [String],
         default: null
     },
+    timings: {
+        type: [String],
+        default: null
+    },
+    requests: [{
+        userId: String,
+        userEmail: String,
+        userMessage: String,
+        date: {
+            type: Date,
+            default: Date.now()
+        }
+    }],
     admin: {
         type: Number,
         min: 0,

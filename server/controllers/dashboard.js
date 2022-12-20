@@ -26,7 +26,8 @@ const getDashboard = app.get("/user/dashboard", function(req, res){
         const userBio = req.user.bio;
         const userAvatar = req.user.userImg;
         const userCategories = req.user.categories;
-        res.render("dashboard", {userType: userType, userName: userName, userBio: userBio, userAvatar: userAvatar, userCategories: userCategories});
+        const userTimings = req.user.timings;
+        res.render("dashboard", {userType: userType, userName: userName, userBio: userBio, userAvatar: userAvatar, userCategories: userCategories, userTimings: userTimings});
     } else {
         res.redirect("/login");
     }
@@ -51,12 +52,14 @@ const postUserStatus = app.post("/user/dashboard/status", function(req, res){
     const userId = req.user._id;
     const userName = req.body.name;
     const userBio = req.body.bio;
+    // catergories text and timings text
     const counsellorCategories = req.body.categories;
-    console.log(counsellorCategories);
-    const categories = counsellorCategories.split(", ");
-    console.log(categories);
+    const availableTimings = req.body.timings;
+    // catergories array and timings array
+    const categories = counsellorCategories.split(",") || counsellorCategories.split(", ");
+    const timings = availableTimings.split(",") ||availableTimings.split(", ");
 
-    User.findByIdAndUpdate(userId, {name: userName, bio: userBio, categories: categories}, function(err){
+    User.findByIdAndUpdate(userId, {name: userName, bio: userBio, categories: categories, timings: timings}, function(err){
         if(err){
             console.log(err);
             res.send(err);

@@ -13,6 +13,7 @@
         <% } else { %>
             <h1>Upload your avatar</h1>
         <% } %>
+        
         <form action="/user/dashboard/avatar" method="post" enctype="multipart/form-data">
             <label for="userImg">Upload Image</label><br>
             <input type="file" name="userImg" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required><br>
@@ -30,13 +31,25 @@
                     <% }) %>
                 <% } %>
                 <br>
-                <input type="text" name="categories" placeholder="category1, category2, ..."><br>
+                <input type="text" name="categories" placeholder="category1, category2, ..." value="<%=userCategories%>"><br>
             <% } %>
-
-            
 
             <label for="bio">Bio</label><br>
             <textarea name="bio" id="" cols="60" rows="6" style="resize: none;"><%=userBio%></textarea><br>
+
+            <% if(userType == 1) { %>
+                <label for="timings">Available Counselling Timings</label><br>
+                <% if(userTimings != null) { %>
+                    <ul>
+                    <% userTimings.forEach(function(timing){ %>
+                        <li><%=timing%></li>
+                    <% }) %>
+                    </ul>
+                <% } %>
+                <br>
+                <textarea name="timings" placeholder="Day & Time 1, Day & Time 2, ..." id="" cols="60" rows="2" style="resize: none;"><%=userTimings%></textarea><br>
+            <% } %>
+
             <button type="submit">Update your status</button>
             <button type="button" onclick="window.location.href='/blogs'">Continue to blog</button>
         </form>
