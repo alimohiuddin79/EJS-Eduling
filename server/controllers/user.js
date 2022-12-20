@@ -54,7 +54,7 @@ const postLogin = function(req, res){
             res.redirect("/login");
         } else {
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/compose");
+                res.redirect("/user/dashboard");
             });
         }
     });

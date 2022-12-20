@@ -14,6 +14,7 @@ const Blog = require("./models/blog");
 const userRoutes = require("./routes/user");
 const resumeRoutes = require("./routes/resume");
 const blogRoutes = require("./routes/blog");
+const dashboardRoutes = require("./routes/dashboard");
 const compose = require("./routes/compose");
 
 const app = express();
@@ -61,6 +62,7 @@ passport.deserializeUser(function(id, done) {
 app.use("/", userRoutes);
 app.use("/", resumeRoutes);
 app.use("/", blogRoutes);
+app.use("/", dashboardRoutes);
 app.use("/", compose);
 
 

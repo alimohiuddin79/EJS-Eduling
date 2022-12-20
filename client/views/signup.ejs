@@ -7,7 +7,7 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <form action="/signup" method="post">
+    <form name="signup" action="/signup" method="post">
         <label for="firstName">First Name</label>
         <input type="text" name="firstName" id=""><br>
         <label for="lastName">Last Name</label>
@@ -15,14 +15,33 @@
         <label for="username">Email</label>
         <input type="text" name="username" id=""><br>
         <label for="password">Password</label>
-        <input type="password" name="password" id=""><br>
+        <input type="password" name="password" class="password" id=""><br>
         <label for="confirmPassword">Confirm Password</label>
-        <input type="password" name="confirmPassword" id=""><br>
+        <input type="password" name="confirmPassword" class="password" id=""><br>
         <input type="radio" name="type" value="0" id="student">
         <label for="student">Student</label>
         <input type="radio" name="type" value="1" id="counsellor">
         <label for="counsellor">Counsellor</label>
-        <button type="submit">Sign Up</button>
+        <button type="button" onclick="ValidateEmail(document.signup.username)">Sign Up</button>
     </form>
+    <script>
+        function Validateform(inputText)
+            {
+            var mailformat = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+            
+            if(inputText.value.match(mailformat))
+            {
+            document.signup.username.focus();
+            document.getElementsByClassName("signup").submit();
+            return true;
+            }
+            else
+            {
+            alert("You have entered an invalid email address!");
+            document.signup.username.focus();
+            return false;
+            }
+            }
+    </script>
 </body>
 </html>

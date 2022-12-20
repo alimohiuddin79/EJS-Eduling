@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div>
+        <% if(userAvatar != null) { %>
+            <img class="avatar" src="data:image/<%=userAvatar.contentType%>;base64,<%=userAvatar.data.toString('base64')%>" alt="profile avatar" width="150" height="150"><br>
+        <% } else { %>
+            <h1>Upload your avatar</h1>
+        <% } %>
+        <form action="/user/dashboard/avatar" method="post" enctype="multipart/form-data">
+            <label for="userImg">Upload Image</label><br>
+            <input type="file" name="userImg" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required><br>
+            <button type="submit">Update your avatar</button>
+        </form>
+        <form action="/user/dashboard/status" method="post">
+            <label for="name">Name</label><br>
+            <input type="text" name="name" value="<%=userName%>"><br>
+
+            <% if(userType == 1) { %>
+                <label for="categories">Categories</label><br>
+                <% if(userCategories != null) { %>
+                    <% userCategories.forEach(function(category){ %>
+                        <h6 style="display: inline-block;">#<%=category%></h6>
+                    <% }) %>
+                <% } %>
+                <br>
+                <input type="text" name="categories" placeholder="category1, category2, ..."><br>
+            <% } %>
+
+            
+
+            <label for="bio">Bio</label><br>
+            <textarea name="bio" id="" cols="60" rows="6" style="resize: none;"><%=userBio%></textarea><br>
+            <button type="submit">Update your status</button>
+            <button type="button" onclick="window.location.href='/blogs'">Continue to blog</button>
+        </form>
+    </div>
+</body>
+</html>
