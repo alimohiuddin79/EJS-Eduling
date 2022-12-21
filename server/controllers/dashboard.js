@@ -27,7 +27,8 @@ const getDashboard = app.get("/user/dashboard", function(req, res){
         const userAvatar = req.user.userImg;
         const userCategories = req.user.categories;
         const userTimings = req.user.timings;
-        res.render("dashboard", {userType: userType, userName: userName, userBio: userBio, userAvatar: userAvatar, userCategories: userCategories, userTimings: userTimings});
+        const userRequests = req.user.requests;
+        res.render("dashboard", {userType: userType, userName: userName, userBio: userBio, userAvatar: userAvatar, userCategories: userCategories, userTimings: userTimings, userRequests: userRequests});
     } else {
         res.redirect("/login");
     }

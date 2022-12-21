@@ -30,11 +30,12 @@ const userSchema = new mongoose.Schema({
         default: null
     },
     requests: [{
-        userId: String,
-        userEmail: String,
-        userMessage: String,
+        studentId: String,
+        studentName: String,
+        studentEmail: String,
+        studentMessage: String,
         date: {
-            type: Date,
+            type: String,
             default: Date.now()
         }
     }],

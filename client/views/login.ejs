@@ -10,7 +10,7 @@
 <body>
     <form action="/login" method="post">
         <label for="username">Email</label>
-        <input type="text" name="username" id=""><br>
+        <input type="email" name="username" id="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
         <label for="password">Password</label>
         <input type="password" name="password" id=""><br>
         <button type="submit">Login</button>

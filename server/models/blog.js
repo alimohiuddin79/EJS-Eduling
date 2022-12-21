@@ -15,7 +15,7 @@ const blogSchema = new mongoose.Schema({
         name: String,
         body: String,
         date: {
-            type: Date,
+            type: String,
             default: Date.now()
         }
     }]

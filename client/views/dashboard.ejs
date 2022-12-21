@@ -50,9 +50,28 @@
                 <textarea name="timings" placeholder="Day & Time 1, Day & Time 2, ..." id="" cols="60" rows="2" style="resize: none;"><%=userTimings%></textarea><br>
             <% } %>
 
+            <% if(userRequests != null){ %>
+                <% userRequests.forEach(function(request){ %>
+                    <p><i><%=request.date%></i></p>
+                    <h5><%=request.studentName%> requested you for counselling</h5>
+                    <p><strong><%=request.studentName%> Contact Email: <%=request.studentEmail%></strong></p>
+                    <p><%=request.studentMessage%></p>
+                <% }) %>
+            <% } %>
+
             <button type="submit">Update your status</button>
             <button type="button" onclick="window.location.href='/blogs'">Continue to blog</button>
         </form>
     </div>
+    <script>
+        let uploadField = document.getElementById("file");
+        
+        uploadField.onchange = function() {
+            if(this.files[0].size > 1048576){
+               alert("File is too big!");
+               this.value = "";
+            };
+        };
+    </script>
 </body>
 </html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire a Counsellor</title>
+</head>
+<body>
+    <h1>Your Details</h1>
+    <form name="details" action="/hirecounsellor/<%=counsellorId%>/confirm%20details" method="post">
+        <label for="name">Name</label><br>
+        <input type="text" name="name" value="<%=userName%>"><br>
+        <label for="email">Name</label><br>
+        <input type="email" name="email" value="<%=userEmail%>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
+        <textarea name="message" id="" cols="60" rows="4" style="resize: none;" placeholder="Your Message"></textarea><br>
+        <input type="checkbox" id="radio" required>
+        <label for="radio">Please confirm the checkbox</label>
+        <button type="submit">Send Request</button>
+    </form>
+    </script>
+</body>
+</html>

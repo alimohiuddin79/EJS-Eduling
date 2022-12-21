@@ -15,6 +15,8 @@ const userRoutes = require("./routes/user");
 const resumeRoutes = require("./routes/resume");
 const blogRoutes = require("./routes/blog");
 const dashboardRoutes = require("./routes/dashboard");
+const counsellorsRoutes = require("./routes/counsellors");
+const hireCounsellorRoutes = require("./routes/hireCounsellor");
 const compose = require("./routes/compose");
 
 const app = express();
@@ -63,6 +65,8 @@ app.use("/", userRoutes);
 app.use("/", resumeRoutes);
 app.use("/", blogRoutes);
 app.use("/", dashboardRoutes);
+app.use("/", counsellorsRoutes);
+app.use("/", hireCounsellorRoutes);
 app.use("/", compose);
 
 
