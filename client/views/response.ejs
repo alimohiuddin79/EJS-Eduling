@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+<body>
+
+    <% if(userType == 0){ %>
+
+        <% if(counsellorResponses != null){ %>
+            <% counsellorResponses.forEach(function(response){ %>
+                <p><i><%=response.date%></i></p>
+                <h5><%=response.counsellorName%> send you response</h5>
+                <p><strong><%=response.counsellorName%> Contact Email: <%=response.counsellorEmail%></strong></p>
+                <p><%=response.counsellorMessage%></p>
+            <% }) %>
+        <% } else { %>
+            <h1>Responses are empty</h1>
+        <% } %>
+
+    <% } else if(userType == 1){ %>
+        <% if(studentRequests != null){ %>
+            <% studentRequests.forEach(function(request){ %>
+                <p><i><%=request.date%></i></p>
+                <h5><%=request.studentName%> requested you for counselling</h5>
+                <p><strong><%=request.studentName%> Contact Email: <%=request.studentEmail%></strong></p>
+                <p><%=request.studentMessage%></p>
+                <br>
+                <% if(request.responded == 1){ %>
+                    <p>You already respond this user</p>
+                <% } else { %>
+                    <form action="/user/chat" method="post" name="response">
+                        <h3>Your Response</h3>
+                        <input type="hidden" name="studentId" value="<%=request.studentId%>">
+                        <input type="hidden" name="requestId" value="<%=request._id%>">
+                        <textarea name="message" id="" cols="60" rows="4" style="resize: none;" placeholder="Your Response"></textarea><br>
+                        <button type="submit">Send Response</button>
+                    </form>
+                <% } %>
+                <% if(message != null){ %>
+                    <p style="color: blue;"><%=message%></p>
+                <% } %>
+            <% }) %>
+        <% } else { %>
+            <h1>Requests are empty</h1>
+        <% } %>
+    <% } %>
+
+    
+</body>
+</html>

@@ -23,7 +23,7 @@ const postHireCounsellorById = app.post("/hirecounsellor/:counsellorId/confirm%2
         const reqEmail = req.body.email;
         const reqMessage = req.body.message;
         let date = new Date;
-        date = date.toLocaleDateString();
+        date = date.toLocaleString();
 
         User.findById(counsellorId, function(err, foundCounsellor){
             if(err){

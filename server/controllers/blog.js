@@ -50,7 +50,7 @@ const postComment = app.post("/blogs", function(req, res){
   const name = req.user.name;
   const comment = req.body.comment;
   let date = new Date;
-  date = date.toLocaleDateString();
+  date = date.toLocaleString();
 
   Blog.findById(blogId, function(err, foundBlog){
     if(err){

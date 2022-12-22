@@ -34,6 +34,23 @@ const userSchema = new mongoose.Schema({
         studentName: String,
         studentEmail: String,
         studentMessage: String,
+        responded: {
+            type: Number,
+            min: 0,
+            max: 1,
+            default: 0
+        },
+        date: {
+            type: String,
+            default: Date.now()
+        }
+    }],
+    responses: [{
+        requestId: String,
+        counsellorId: String,
+        counsellorName: String,
+        counsellorEmail: String,
+        counsellorMessage: String,
         date: {
             type: String,
             default: Date.now()

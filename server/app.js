@@ -17,6 +17,7 @@ const blogRoutes = require("./routes/blog");
 const dashboardRoutes = require("./routes/dashboard");
 const counsellorsRoutes = require("./routes/counsellors");
 const hireCounsellorRoutes = require("./routes/hireCounsellor");
+const responseRoutes = require("./routes/response");
 const compose = require("./routes/compose");
 
 const app = express();
@@ -67,6 +68,7 @@ app.use("/", blogRoutes);
 app.use("/", dashboardRoutes);
 app.use("/", counsellorsRoutes);
 app.use("/", hireCounsellorRoutes);
+app.use("/", responseRoutes);
 app.use("/", compose);
 
 
