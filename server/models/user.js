@@ -64,6 +64,8 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+userSchema.index({name: "text", categories: "text"});
+
 userSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model("User", userSchema);

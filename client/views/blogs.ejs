@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    a{
+        text-decoration: none;
+    }
+    a:link, a:visited{
+        color: black;
+    }
+</style>
+<body>
+
+<h1>Posts</h1>
+<div class="container posts-container">
+
+    <form action="/search/blogs" method="post">
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    <br>
+    <% blogPosts.forEach(function(blog){ %>
+        <a href="/blogs/<%=blog._id%>">
+            <div>
+                <img class="blog-img-preview" src="data:image/<%=blog.titleImg.contentType%>;base64,<%=blog.titleImg.data.toString('base64')%>" alt="" width="300" height="500">
+                <h3><%=blog.title%></h3>
+                <p><%=blog.content%></p>
+                <p><%=blog.adminId%></p>
+                <p><%=blog.authorEmail%></p>
+                <p><%=blog.authorName%></p>
+                <p><%=blog.createdAt%></p>
+            </div>
+        </a>
+
+    <% }); %>
+  </div>
+
+</body>
+</html>

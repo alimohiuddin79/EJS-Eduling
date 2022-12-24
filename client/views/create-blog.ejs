@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- Submit New Post -->
-<form class="" action="/create" method="post" enctype="multipart/form-data">
+<form action="/create" method="post" enctype="multipart/form-data">
     <label for="title">Title:</label>
     <input type="text" name="title">
     <label for="content">Write something:</label>
@@ -17,6 +17,20 @@
     <input type="file" name="postImage" required id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp">
     <button type="submit" name="button">Submit</button>
   </form>
+
+  <% if(adminBlogs.length != 0){ %>
+    <h2>Your Blogs</h2>
+    <% adminBlogs.forEach(function(blog){ %>
+        <a href="/update/<%=blog._id%>">
+            <div>
+                <img class="blog-img-preview" src="data:image/<%=blog.titleImg.contentType%>;base64,<%=blog.titleImg.data.toString('base64')%>" alt="" width="120" height="200">
+                <h3><%=blog.title%></h3>
+                <p>blog.authorName</p>
+            </div>
+        </a>
+        <br>
+    <% }) %>
+  <% } %>
   
   <script>
   let uploadField = document.getElementById("file");

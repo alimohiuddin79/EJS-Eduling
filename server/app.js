@@ -18,6 +18,8 @@ const dashboardRoutes = require("./routes/dashboard");
 const counsellorsRoutes = require("./routes/counsellors");
 const hireCounsellorRoutes = require("./routes/hireCounsellor");
 const responseRoutes = require("./routes/response");
+const blogSearchRoutes = require("./routes/blogSearch");
+const counsellorSearchRoutes = require("./routes/counsellorSearch");
 const compose = require("./routes/compose");
 
 const app = express();
@@ -69,6 +71,8 @@ app.use("/", dashboardRoutes);
 app.use("/", counsellorsRoutes);
 app.use("/", hireCounsellorRoutes);
 app.use("/", responseRoutes);
+app.use("/", blogSearchRoutes);
+app.use("/", counsellorSearchRoutes);
 app.use("/", compose);
 
 

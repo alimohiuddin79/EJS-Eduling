@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update blog</title>
+</head>
+<body>
+    <% if(requestedBlog.titleImg != null){ %>
+        <img class="requestedBlog-img-preview" src="data:image/<%=requestedBlog.titleImg.contentType%>;base64,<%=requestedBlog.titleImg.data.toString('base64')%>" alt="" width="120" height="180">
+    <% } %>
+    
+
+    <form action="/update/blogImage/<%=requestedBlog._id%>" method="post" enctype="multipart/form-data">
+        <label for="userImg">Update Blog Title Image</label><br>
+        <input type="file" name="postImage" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required><br>
+        <button type="submit">Update Title Image</button>
+    </form>
+
+    <form action="/update/status/<%=requestedBlog._id%>" method="post">
+        <label for="title">Title</label><br>
+        <input type="text" name="title" value="<%=requestedBlog.title%>"><br>
+        <label for="content">Content</label><br>
+        <textarea name="content" cols="80" rows="8" style="resize: none;"><%=requestedBlog.content%></textarea><br>
+        <button type="submit">Update Title and Content</button>
+    </form>
+
+    <form id="delete" action="/delete/<%=requestedBlog._id%>" method="post">
+        <button type="button" onclick="checkConfirm()">Delete Blog</button>
+    </form>
+
+    <script>
+        let uploadField = document.getElementById("file");
+        
+        uploadField.onchange = function() {
+            if(this.files[0].size > 1048576){
+               alert("File is too big!");
+               this.value = "";
+            };
+        };
+
+        function checkConfirm(){
+            if(confirm('Are you sure to delete this blog?') == true){
+                document.getElementById("delete").submit();
+            } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

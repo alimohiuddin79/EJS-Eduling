@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=requestedBlog.title%></title>
+</head>
+<body>
+    <div>
+        <img class="requestedBlog-img-preview" src="data:image/<%=requestedBlog.titleImg.contentType%>;base64,<%=requestedBlog.titleImg.data.toString('base64')%>" alt="" width="300" height="500">
+        <h3><%=requestedBlog.title%></h3>
+        <p><%=requestedBlog.authorName%></p>
+        <p><%=requestedBlog.createdAt%></p>
+        <p><%=requestedBlog.authorEmail%></p>
+        <p><%=requestedBlog.content%></p>
+    </div>
+
+    <div>
+        <h3>Blog Comments</h3>
+        <% if(showComment){ %>
+            <form action="/blogs/<%=requestedBlog._id%>" method="post">
+                <label for="comment">Type your comment</label>
+                <textarea name="comment" id="" cols="50" rows="4" style="resize: none"></textarea>
+                <input type="hidden" name="blogId" value="<%=requestedBlog._id%>">
+                <button type="submit">Submit</button>
+            </form>
+        <% } else { %>
+            <h3>Login to comment on Blog</h3>
+        <% } %>
+        
+        <% if(requestedBlog.comments.length != 0){ %>
+            <% requestedBlog.comments.forEach(function(comment){ %>
+                <p><%=comment.userId%></p>
+                <p><%=comment.name%></p>
+                <p><%=comment.body%></p>
+                <p><%=comment.date%></p>
+            <% }) %>
+        <% } %>
+    </div>
+</body>
+</html>

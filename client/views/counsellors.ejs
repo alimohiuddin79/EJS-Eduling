@@ -15,6 +15,13 @@
     }
 </style>
 <body>
+
+    <form action="/search/counsellors" method="post">
+        <input type="text" name="search" placeholder="counsellor name or category">
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    <br>
     
     <% counsellors.forEach(function(counsellor){ %>
         <a href="/counsellors/<%=counsellor._id%>">
@@ -22,7 +29,8 @@
                 <% if(counsellor.userImg != null) { %>
                     <img src="data:image/<%=counsellor.userImg.contentType%>;base64,<%=counsellor.userImg.data.toString('base64')%>" alt="counsellor-avatar" width="250" height="250">
                 <% } %>
-
+                
+                <p><%=counsellor.name%></p>
                 <p style="font-style: italic;">Categories</p>
                 <% if(counsellor.categories != null) { %>
                     <% counsellor.categories.forEach(function(category){ %>
