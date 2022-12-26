@@ -20,6 +20,7 @@ const hireCounsellorRoutes = require("./routes/hireCounsellor");
 const responseRoutes = require("./routes/response");
 const blogSearchRoutes = require("./routes/blogSearch");
 const counsellorSearchRoutes = require("./routes/counsellorSearch");
+const contactUsRoutes = require("./routes/contactUs");
 const compose = require("./routes/compose");
 
 const app = express();
@@ -73,58 +74,5 @@ app.use("/", hireCounsellorRoutes);
 app.use("/", responseRoutes);
 app.use("/", blogSearchRoutes);
 app.use("/", counsellorSearchRoutes);
+app.use("/", contactUsRoutes);
 app.use("/", compose);
-
-
-
-// const Blog = require("./models/blog");
-// // Initialize multer
-// const storage = multer.diskStorage({
-//     destination: "../client/public/uploads/",
-//     limits: { fileSize: 1000000 },
-//     filename: function(req, file, cb) {
-//       cb(null, file.fieldname + "-" + Date.now());
-//     }
-//   });
-// const upload = multer({storage: storage});
-
-// app.route("/blogs").get(function(req, res){
-//     // Deleting all files in uploads folder
-//     const directory = __dirname + '/../client/public/uploads/';
-
-//     fs.readdir(directory, function(err, files){
-//     if (err) throw err;
-
-//     for (const file of files) {
-//     fs.unlink(path.join(directory, file), function(err){
-//       if(err){
-//         console.log(err);
-//       }
-//     });
-//     }
-//     });
-
-//     Blog.find({}, function(err, foundPosts) {
-//     if(err) {
-//       console.log(err);
-//     } else {
-//       if (foundPosts) {
-
-//         res.render("blog", {blogPosts: foundPosts});
-//       }
-//     }
-//   });
-// }).post(upload.single('postImage'), function(req, res) {
-//     const title = req.body.title;
-//     const content = req.body.content;
-//     const imgType = req.file.mimetype;
-//     const imgData = fs.readFileSync(path.join(__dirname + '/../client/public/uploads/' + req.file.filename));
-  
-//     Blog.create({title: title, content: content, titleImg: {data: imgData, contentType: imgType}}, function(err){
-//       if(err){
-//         console.log(err);
-//         res.send(err);
-//       }
-//       res.redirect("/blogs");
-//     });
-// });
