@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+    div{
+        margin: auto 0;
+        border: 2px solid black;
+    }
+    .centered{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+    <input id="result" type="hidden" value='<%= JSON.stringify(results) %>'>
+    <div class="centered">
+        <canvas id="myChart"></canvas>
+    </div>
+<script>
+  // Set up the chart
+  var canvas = document.getElementById('myChart');
+    var ctx = canvas.getContext('2d');
+
+    // Set the dimensions of the chart
+    var width = 360;
+    var height = 300;
+    canvas.width = width;
+    canvas.height = height;
+
+    // Set the bar width and spacing
+    var barWidth = 40;
+    var barSpacing = 40;
+
+    // Set the font for the labels
+    ctx.font = '16px Arial';
+
+    // Set the data for the chart
+    var data = JSON.parse(document.getElementById("result").value);
+    console.log(data);
+
+    // Set the colors for the chart
+    var colors = ['#3366CC', '#DC3912', '#FF9900', '#109618'];
+
+    // Draw the bars and labels
+    var i = 0;
+    var newLabel = "";
+    for (var label in data) {
+        // increase data value for taller bar
+        data[label] = data[label] * 20;
+
+        // if label is to big then create short form
+        if(label.includes(" ")){
+            newLabel = label.split(" ").map(function(substring){return substring[0]}).join("");
+        } else{
+            newLabel = label;
+        }
+        console.log(newLabel);
+
+        // var wrapLabel = label.split(" ").join("\n");
+        // Draw the bar
+        ctx.fillStyle = colors[i];
+        ctx.fillRect(barSpacing + i * (barWidth + barSpacing), height - data[label], barWidth, data[label]);
+
+        // Draw the label
+        ctx.fillStyle = 'black';
+        ctx.textAlign = 'center';
+        // Calculate the label position
+        ctx.fillText(newLabel, barSpacing + i * (barWidth + barSpacing) + barWidth / 2, height - data[label] - 10);
+
+        i++;
+    }
+</script>
+
+</body>
+</html>

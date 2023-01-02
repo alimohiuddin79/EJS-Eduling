@@ -7,7 +7,7 @@ const getContactUs = function(req, res){
 const postContactUs = function(req, res){
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 465,
+        port: 465, //465 is secure port
         secure: true,
         auth: {
             user: process.env.CONTACT_EMAIL,

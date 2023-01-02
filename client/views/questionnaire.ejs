@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire</title>
+</head>
+<style>
+.question {
+    flex: 0 0 100%;
+    margin-bottom: 1em;
+    display: none;
+}
+.question.active {
+    display: block;
+}
+
+button {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+</style>
+<body>
+    <div id="questions">
+        <% questionIndex = 0 %>
+        <form action="/start%20questionnaire/<%=requestedCategory%>" method="post">
+            <% questions.forEach(function(question, index){ %>
+                <% var user_input = "user_input_" + (index+1).toString() %>
+                <div class="question">
+                    <fieldset>
+                        <legend>Q.<%=index+1%> <%=question.question%></legend>
+                        <% question.options.forEach(function(option){ %>
+                            <input type="radio" name="<%=user_input%>" value="<%=[option,question.field,question.answer]%>">
+                            <label><%=option%></label>
+                        <% }) %>
+                    </fieldset>
+                </div>
+               <% questionIndex = index %>
+            <% }) %>
+            <!-- Navigation buttons -->
+            <div class="buttons">
+                <button class="prev-btn" type="button" id="prev">Previous</button>
+                <button class="next-btn" type="button" id="next">Next</button>   
+                <button class="submit-btn" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        
+        var currentQuestion = 0;
+        var questions = document.querySelectorAll('.question');
+
+        function showQuestion(index) {
+        questions.forEach(function(question) {
+            question.classList.remove('active');
+        });
+        questions[index].classList.add('active');
+        currentQuestion = index;
+        }
+
+        function showButton(index){
+            if(index == 0){
+                document.getElementsByClassName("prev-btn")[0].classList.remove('show');
+                document.getElementsByClassName("submit-btn")[0].classList.remove('show');
+                document.getElementsByClassName("next-btn")[0].classList.add('show');
+            } else if(questions.length - 1 == index){
+                document.getElementsByClassName("next-btn")[0].classList.remove('show');
+                document.getElementsByClassName("prev-btn")[0].classList.add('show');
+                document.getElementsByClassName("submit-btn")[0].classList.add('show');
+            }  else {
+                document.getElementsByClassName("submit-btn")[0].classList.remove('show');
+                document.getElementsByClassName("prev-btn")[0].classList.add('show');
+                document.getElementsByClassName("next-btn")[0].classList.add('show');
+            }
+        }
+
+        document.getElementById('prev').addEventListener('click', function() {
+            console.log((currentQuestion - 1 + questions.length) % questions.length);
+            showQuestion((currentQuestion - 1 + questions.length) % questions.length);
+            showButton(currentQuestion);
+        });
+
+        document.getElementById('next').addEventListener('click', function() {
+            console.log((currentQuestion + 1) % questions.length);
+            showQuestion((currentQuestion + 1) % questions.length);
+            showButton(currentQuestion);
+        });
+
+        showQuestion(currentQuestion);
+        console.log(currentQuestion);
+        showButton(currentQuestion);
+    </script>
+</body>
+</html>

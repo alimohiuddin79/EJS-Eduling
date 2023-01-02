@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/upload%20question" method="post">
+        <label>Available Categories</label><br>
+        <% categories.forEach(function(category){ %>
+            <input type="radio" name="chosenCategory" value="<%=category%>" onclick="setCategory()">
+            <label><%=category%></label> 
+        <% }) %>
+        <br>   
+        <label>Choose or Create Category</label><br>
+        <label for="category">category</label><br>
+        <input type="text" name="category" placeholder="Computer || Engineering"><br>
+
+        <label>Available Fields</label><br>
+        <% fields.forEach(function(field){ %>
+            <input type="radio" name="chosenField" value="<%=field%>" onclick="setField()">
+            <label><%=field%></label> 
+        <% }) %>
+        <br>
+        <label for="field">field</label><br>
+        <input type="text" name="field"><br>
+
+        <label for="question">question</label><br>
+        <input type="text" name="question"><br>
+        <label for="options">options</label><br>
+        <input type="text" name="options" placeholder="option1, option2"><br>
+        <label for="answer">answer</label><br>
+        <input type="text" name="answer"><br>
+        <button type="submit" class="btn btn-primary">Submit Question</button>
+    </form>
+
+    <script>
+        function setCategory(){
+            let newValue = document.querySelector('input[name="chosenCategory"]:checked').value;
+            document.getElementsByName("category")[0].setAttribute("value", newValue);
+        }
+        function setField(){
+            let newValue = document.querySelector('input[name="chosenField"]:checked').value;
+            document.getElementsByName("field")[0].setAttribute("value", newValue);
+        }
+    </script>
+</body>
+</html>

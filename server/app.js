@@ -20,6 +20,8 @@ const hireCounsellorRoutes = require("./routes/hireCounsellor");
 const responseRoutes = require("./routes/response");
 const blogSearchRoutes = require("./routes/blogSearch");
 const counsellorSearchRoutes = require("./routes/counsellorSearch");
+const questionRoutes = require("./routes/question");
+const questionnaireRoutes = require("./routes/questionnaire");
 const contactUsRoutes = require("./routes/contactUs");
 const compose = require("./routes/compose");
 
@@ -74,5 +76,7 @@ app.use("/", hireCounsellorRoutes);
 app.use("/", responseRoutes);
 app.use("/", blogSearchRoutes);
 app.use("/", counsellorSearchRoutes);
+app.use("/", questionRoutes);
+app.use("/", questionnaireRoutes);
 app.use("/", contactUsRoutes);
 app.use("/", compose);
