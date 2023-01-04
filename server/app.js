@@ -23,6 +23,8 @@ const counsellorSearchRoutes = require("./routes/counsellorSearch");
 const questionRoutes = require("./routes/question");
 const questionnaireRoutes = require("./routes/questionnaire");
 const contactUsRoutes = require("./routes/contactUs");
+const homeRoute = require("./routes/home");
+const logoutRoute = require("./routes/logout");
 const compose = require("./routes/compose");
 
 const app = express();
@@ -79,4 +81,6 @@ app.use("/", counsellorSearchRoutes);
 app.use("/", questionRoutes);
 app.use("/", questionnaireRoutes);
 app.use("/", contactUsRoutes);
+app.use("/", homeRoute);
+app.use("/", logoutRoute);
 app.use("/", compose);
