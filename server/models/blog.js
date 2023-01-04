@@ -7,8 +7,10 @@ const blogSchema = new mongoose.Schema({
     title: String,
     content: String,
     titleImg: {
-        data: Buffer,
-        contentType: String
+        type: {
+            data: Buffer,
+            contentType: String
+        }, default: null
     },
     comments: [{
         userId: String,

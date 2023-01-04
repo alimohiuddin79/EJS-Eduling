@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <title>Chat</title>
 </head>
 <body>
@@ -15,7 +16,7 @@
                 <p><i><%=response.date%></i></p>
                 <h5><%=response.counsellorName%> send you response</h5>
                 <p><strong><%=response.counsellorName%> Contact Email: <%=response.counsellorEmail%></strong></p>
-                <p><%=response.counsellorMessage%></p>
+                <p><%-response.counsellorMessage%></p>
             <% }) %>
         <% } else { %>
             <h1>Responses are empty</h1>
@@ -27,7 +28,7 @@
                 <p><i><%=request.date%></i></p>
                 <h5><%=request.studentName%> requested you for counselling</h5>
                 <p><strong><%=request.studentName%> Contact Email: <%=request.studentEmail%></strong></p>
-                <p><%=request.studentMessage%></p>
+                <p><%-request.studentMessage%></p>
                 <br>
                 <% if(request.responded == 1){ %>
                     <p>You already respond this user</p>
@@ -36,7 +37,7 @@
                         <h3>Your Response</h3>
                         <input type="hidden" name="studentId" value="<%=request.studentId%>">
                         <input type="hidden" name="requestId" value="<%=request._id%>">
-                        <textarea name="message" id="" cols="60" rows="4" style="resize: none;" placeholder="Your Response"></textarea><br>
+                        <textarea name="message" style="resize: none;" placeholder="Your Response"></textarea><br>
                         <button type="submit">Send Response</button>
                     </form>
                 <% } %>
@@ -49,6 +50,21 @@
         <% } %>
     <% } %>
 
-    
+    <script>
+        // tinymce text editor function
+        tinymce.init({
+        selector: 'textarea',
+        height: 400,
+        menubar: false,
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        });
+    </script>
 </body>
 </html>

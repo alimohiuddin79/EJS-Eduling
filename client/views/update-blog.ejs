@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <title>Update blog</title>
 </head>
 <body>
@@ -22,7 +23,7 @@
         <label for="title">Title</label><br>
         <input type="text" name="title" value="<%=requestedBlog.title%>"><br>
         <label for="content">Content</label><br>
-        <textarea name="content" cols="80" rows="8" style="resize: none;"><%=requestedBlog.content%></textarea><br>
+        <textarea name="content" cols="80" rows="8" style="resize: none;"><%-requestedBlog.content%></textarea><br>
         <button type="submit">Update Title and Content</button>
     </form>
 
@@ -31,6 +32,7 @@
     </form>
 
     <script>
+        // set limit of title image up to 1MB
         let uploadField = document.getElementById("file");
         
         uploadField.onchange = function() {
@@ -47,6 +49,21 @@
                 return false;
             }
         }
+
+        // tinymce text editor function
+        tinymce.init({
+        selector: 'textarea',
+        height: 600,
+        menubar: false,
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        });
     </script>
 </body>
 </html>
