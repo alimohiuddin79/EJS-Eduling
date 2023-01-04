@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <% if(isUserOnline){ %>
+        <h1 id="user-name"><%=userName%></h1>
+        <button onclick="window.location.href='/logout'">Logout</button>
+    <% } else { %>
+        <h1>No user</h1>
+        <button onclick="window.location.href='/signup'">Sign Up</button>
+        <button onclick="window.location.href='/login'">Login</button>
+    <% } %>
+    
+
+    <script>
+        let name = document.getElementById("user-name").innerHTML;
+        if(name.includes(" ")){
+            let newName = name.split(" ")[0];
+            document.getElementById("user-name").innerHTML = newName;
+        }
+    </script>
