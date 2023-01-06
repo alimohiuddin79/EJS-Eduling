@@ -1,0 +1,8 @@
+primary color - 36F8B2 100%
+
+secondary color - 459ED0 100%
+
+tertiary color - A46448 100%
+
+
+navbar background color - 54 248 178 45%

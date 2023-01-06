@@ -1,28 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+<%- include('partials/header') %>
+<!-- Other css sheet link here -->
+<title>Sign Up</title>
 </head>
 <body>
-    <form action="/signup" method="post">
-        <label for="firstName">First Name</label>
-        <input type="text" name="firstName" id=""><br>
-        <label for="lastName">Last Name</label>
-        <input type="text" name="lastName" id=""><br>
-        <label for="username">Email</label>
-        <input type="email" name="username" id="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
-        <label for="password">Password</label>
-        <input type="password" name="password" class="password" id="" pattern=".{8,}"><br>
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" name="confirmPassword" class="password" id="" pattern=".{8,}"><br>
-        <input type="radio" name="type" value="0" id="student">
-        <label for="student">Student</label>
-        <input type="radio" name="type" value="1" id="counsellor">
-        <label for="counsellor">Counsellor</label>
-        <button type="submit">Sign Up</button>
-    </form>
+    <%- include('partials/navbar') %>
+    <div class="u-container">
+        <h4 class="signup-heading primary-color-heading text-center">Sign Up to Eduling</h4>
+        <form action="/signup" method="post" class="signup-form">
+            <div class="mb-3">
+                <label for="firstName" class="form-label text-left">First Name</label>
+                <input type="text" class="form-control" name="firstName" required autocomplete="off">
+            </div>
+            
+            <div class="mb-3">
+                <label for="lastName" class="form-label text-left">Last Name</label>
+                <input type="text" name="lastName" class="form-control" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label text-left">Email</label>
+                <input type="email" name="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="edulinguser@example.com" required autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label text-left">Password</label>
+                <input type="password" name="password" class="password form-control" pattern=".{8,}" required autocomplete="off">
+            </div>
+            <div class="mb-3 text-left">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" name="confirmPassword" class="password form-control" pattern=".{8,}" required autocomplete="off">
+            </div>
+            
+            <select name="type" class="form-select form-select-lg mb-3" aria-label=".form-select-lg" required>
+                <option selected>Select User Category</option>
+                <option value="0">Student</option>
+                <option value="1">Counsellor</option>
+            </select>
+
+            <div class="mb-3 text-left signup-check">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="invalidCheck" required>
+                  <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                  </label>
+                  <div class="invalid-feedback">
+                    You must agree before submitting.
+                  </div>
+                </div>
+            </div>
+            
+            <div class="mb-3 text-center signup-btn">
+                <button class="btn btn-lg btn-edu-primary" type="submit">Sign Up</button>
+            </div>
+            
+            <div class="mb-3 text-center">
+                <a href="/login">Already Have an Account?</a>
+            </div>
+            
+        </form>
+    </div>
 </body>
 </html>

@@ -4,12 +4,14 @@ const session = require("express-session");
 
 // Signup controllers
 const getSignup = function(req, res){
-    // if(req.isAuthenticated){
-    //     res.render("home");
-    // } else {
-    //     res.render("signup");
-    // } 
-    res.render("signup");
+    if(req.isAuthenticated()){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        res.render("home", {isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+    } else {
+        res.render("signup", {isUserOnline: false});
+    }
 }
 
 const postSignup = function(req, res){
@@ -26,7 +28,7 @@ const postSignup = function(req, res){
                 res.redirect("/signup");
             } else {
                 passport.authenticate("local")(req, res, function(){
-                    res.redirect("/compose");
+                    res.redirect("/user/dashboard");
                 });
             }
         });

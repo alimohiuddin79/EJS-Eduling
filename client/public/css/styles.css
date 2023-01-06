@@ -1,6 +1,220 @@
 *{
     margin: 0;
     padding: 0;
-    /* background-color: rgba(62, 192, 83, 1); */
 }
 
+body{
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+}
+
+a{
+    color: black;
+}
+
+.u-container{
+    padding: 60px 120px;
+}
+
+.edu-primary-color{
+    color: #36F8B2;
+}
+
+.section-big-heading{
+    font-weight: 700;
+    font-size: 3.8em;
+    margin: 26px 0 32px;
+}
+
+.bluepara{
+    font-weight: 400;
+    font-size: 22px;
+    color: #459ED0;
+}
+
+.primary-color-heading{
+    font-weight: 600;
+    font-size: 26px;
+    color: #36F8B2;
+}
+
+/*--------- Buttons ---------*/
+
+.btn-lg{
+    padding: 12px 24px;
+    border-radius: 12px;
+}
+
+.btn-white{
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+    transition: background-color 0.3s;
+}
+.btn-white:hover{
+    background-color: rgba(255, 255, 255, 0.60);
+}
+
+.btn-edu-primary{
+    background-color: rgba(54, 248, 178, 1);
+    color: black;
+    transition: background-color 0.3s;
+}
+.btn-edu-primary:hover{
+    background-color: rgba(255, 255, 255, 0.60);
+}
+
+
+/* ----------- Header -----------*/
+.navbar{
+    background-color: rgba(54, 248, 178, 0.45);
+    padding: 32px 120px;
+}
+
+.nav-btn-mg{
+    margin-right: 18px;
+}
+
+.nav-item{
+    font-size: 18px;
+    margin: 0 6px;
+}
+
+.nav-link{
+    color: rgba(0, 0, 0, .80);
+    transition: color 0.3s;
+}
+.nav-link:hover{
+    color: rgba(0, 0, 0, 1);
+}
+/* ----------- Header -----------*/
+
+/* ============================================== */
+
+/* ----------- Hero Section -----------*/
+.hero-col-right{
+    display: flex;
+    justify-content: right;
+}
+
+.hero-btn-col{
+    margin-right: -56px;
+}
+
+.hero-big-heading{
+    font-weight: 700;
+    font-size: 3.8em;
+    margin-bottom: 48px;
+}
+
+.hero-small-heading{
+    font-weight: 700;
+    font-size: 3em;
+    margin-bottom: 68px;
+}
+
+.hero-text{
+    font-weight: 400;
+    font-size: 1.8em;
+    margin-bottom: 48px;
+}
+
+.fa-circle-play{
+    font-size: 48px;
+    color: #CBCACA;
+    margin-top: 4px;
+}
+
+.play-text{
+    display: inline-block;
+    font-size: 18px;
+    margin: 14px 0 0 8px;
+    border-bottom: 1px solid black;
+}
+/* ----------- Hero Section -----------*/
+
+/* ============================================== */
+
+/* ----------- Counters Section -----------*/
+.counters{
+    background-color: rgba(54, 248, 178, 1);
+    padding: 30px 120px 0;
+    height: 200px auto;
+}
+
+.counters h4 {
+    color: white;
+    font-weight: 700;
+    font-size: 62px;
+}
+
+.counters p {
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+}
+/* ----------- Counters Section -----------*/
+
+/* ============================================== */
+
+/* ----------- Why Choose Us Section -----------*/
+
+.choose-us-soft-heading{
+    margin: 24px 0;
+}
+
+.choose-us-heading{
+    font-weight: 700;
+    font-size: 3.8em;
+    margin: 48px 0 102px;
+}
+
+.feature-heading{
+    font-weight: 600;
+    font-size: 20px;
+    margin: 14px 0 26px;
+}
+/* ----------- Why Choose Us Section -----------*/
+
+/* ============================================== */
+
+/* ----------- Footer Section -----------*/
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #36F8B273;
+}
+
+.footer-icon{
+    font-size: 42px;
+}
+
+.Copyright {
+    background-color: #36F8B2;
+    text-align: center;
+
+}
+/* ----------- Footer Section -----------*/
+
+/* ============================================== */
+
+/* ----------- Sign Up Page -----------*/
+
+.signup-form{
+    width: 600px;
+    margin: auto;
+}
+
+.signup-heading{
+    font-size: 36px;
+    margin-bottom: 62px;
+}
+
+.signup-check{
+    margin-top: 48px;
+}
+
+.signup-btn{
+    margin: 28px 0;
+}

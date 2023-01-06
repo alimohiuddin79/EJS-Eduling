@@ -1,0 +1,37 @@
+<!-- Footer -->
+<section>
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col align-self-center footer">
+                <h4>Contact us on Social media </h4>
+                <br>
+                <div class="row">
+                    <div class="col-sm-3"><a href=""><i class="footer-icon fa-brands fa-square-facebook"></i></a></div>
+                    <div class="col-sm-3"><a href=""><i class="footer-icon fa-brands fa-square-twitter"></i></a></div>
+                    <div class="col-sm-3"><a href=""><i class="footer-icon fa-brands fa-linkedin"></i></a></div>
+                    <div class="col-sm-3"><a href=""><i class="footer-icon fa-brands fa-instagram"></i></a></div>
+                </div>
+                <p> <a href="">Privacy Policy </a>| <a href="">Legal</a> </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col Copyright">
+                <h4>Copyright Ⓒ Eduling</h4>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer -->
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+<script>
+    let name = document.getElementById("user-name").innerHTML;
+    if(name.includes(" ")){
+        let newName = name.split(" ")[0];
+        document.getElementById("user-name").innerHTML = newName;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img src="../assets/Logo.png" alt="Logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse nav-middle" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item text-center">
+            <a class="nav-link" href="#">Resume Builder</a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link" href="#">Hire a Counselor</a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link" href="#">Blogs</a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link" href="#">Questionnaire</a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
+          <% if(isUserOnline){ %>
+            <% if(isAdmin == 1){ %>
+              <li class="nav-item dropdown text-center">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown link
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            <% } %>
+          <% } %>
+        </ul>
+        
+          <% if(isUserOnline){ %>
+              <h1 id="user-name"><%=userName%></h1>
+              <button onclick="window.location.href='/logout'">Logout</button>
+          <% } else { %>
+              <button class="btn btn-lg btn-white nav-btn-mg" onclick="window.location.href='/login'">Login</button>
+              <button class="btn btn-lg btn-edu-primary" onclick="window.location.href='/signup'">Sign Up</button>
+          <% } %>
+        
+      </div>
+    </div>
+  </nav>
