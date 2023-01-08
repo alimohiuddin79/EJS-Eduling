@@ -1,45 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('partials/header') %>
     <script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <title>Dashboard</title>
 </head>
 <body>
-    <div>
-        <% if(userAvatar != null) { %>
-            <img class="avatar" src="data:image/<%=userAvatar.contentType%>;base64,<%=userAvatar.data.toString('base64')%>" alt="profile avatar" width="150" height="150"><br>
-        <% } else { %>
-            <h1>Upload your avatar</h1>
-        <% } %>
+    <%- include('partials/navbar') %>
+    <div class="u-container">
+        <div class="mb-3 text-center">
+            <% if(userImg != null) { %>
+                <% if(userType == 0){ %>
+                    <img style="width: 250px; height: 250px; border-radius: 50%;" src="data:image/<%=userImg.contentType%>;base64,<%=userImg.data.toString('base64')%>" alt="profile avatar"><br>
+                <% } else if(userType == 1){ %>
+                    <img style="width: 320px; height: 420px; border-radius: 12px;" src="data:image/<%=userImg.contentType%>;base64,<%=userImg.data.toString('base64')%>" alt="profile avatar"><br>
+                <% } %>
+            <% } else { %>
+                <h3>Upload Your Avatar</h1>
+            <% } %>
+        </div>
         
-        <form action="/user/dashboard/avatar" method="post" enctype="multipart/form-data">
-            <label for="userImg">Upload Image</label><br>
-            <input type="file" name="userImg" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required><br>
-            <button type="submit">Update your avatar</button>
-        </form>
+        <div class="mb-3 text-center" style="width: 320px; margin: auto;">
+            <form action="/user/dashboard/avatar" method="post" enctype="multipart/form-data">
+                <label class="form-label" for="userImg">Update Avatar</label><br>
+                <input class="form-control" type="file" name="userImg" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required><br>
+                <button class="btn btn-md btn-edu-secondary" type="submit">Update your avatar</button>
+            </form>
+        </div>
         <form action="/user/dashboard/status" method="post">
-            <label for="name">Name</label><br>
-            <input type="text" name="name" value="<%=userName%>"><br>
+            <label class="form-label" for="name">Name</label><br>
+            <input class="form-control" type="text" name="name" value="<%=userName%>"><br>
 
             <% if(userType == 1) { %>
-                <label for="categories">Categories</label><br>
+                <label class="form-label" for="categories">Categories</label><br>
                 <% if(userCategories != null) { %>
                     <% userCategories.forEach(function(category){ %>
-                        <h6 style="display: inline-block;">#<%=category%></h6>
+                        <p style="display: inline-block;">#<%=category%></p>
                     <% }) %>
                 <% } %>
                 <br>
-                <input type="text" name="categories" placeholder="category1, category2, ..." value="<%=userCategories%>"><br>
+                <input class="form-control" type="text" name="categories" placeholder="category1, category2, ..." value="<%=userCategories%>"><br>
             <% } %>
 
-            <label for="bio">Bio</label><br>
-            <textarea name="bio" id="" cols="60" rows="6" style="resize: none;"><%-userBio%></textarea><br>
+            <label class="form-label" for="bio">Bio</label><br>
+            <textarea name="bio" id="bio" style="resize: none;"><%-userBio%></textarea><br>
 
             <% if(userType == 1) { %>
-                <label for="timings">Available Counselling Timings</label><br>
+                <label class="form-label" for="timings">Available Counselling Timings</label><br>
                 <% if(userTimings != null) { %>
                     <ul>
                     <% userTimings.forEach(function(timing){ %>
@@ -48,12 +52,12 @@
                     </ul>
                 <% } %>
                 <br>
-                <textarea name="timings" placeholder="Day & Time 1, Day & Time 2, ..." id="" cols="60" rows="2" style="resize: none;"><%=userTimings%></textarea><br>
+                <textarea class="form-control" name="timings" placeholder="Day & Time 1, Day & Time 2, ..." cols="60" rows="2" style="resize: none;"><%=userTimings%></textarea><br>
             <% } %>
 
-            <button type="submit">Update your status</button>
-            <button type="button" onclick="window.location.href='/blogs'">Continue to blog</button>
-            <button type="button" onclick="window.location.href='/user/responses'">Check responses or requests</button>
+            <button class="btn btn-md btn-edu-secondary me-3" type="submit">Update your status</button>
+            <button class="btn btn-md btn-edu-secondary me-3" type="button" onclick="window.location.href='/blogs'">Continue to blog</button>
+            <button class="btn btn-md btn-edu-secondary me-3" type="button" onclick="window.location.href='/user/responses'">Check responses or requests</button>
         </form>
     </div>
     <script>
@@ -69,7 +73,7 @@
 
         // tinymce text editor function
         tinymce.init({
-        selector: 'textarea',
+        selector: '#bio',
         height: 400,
         menubar: false,
         plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
@@ -82,5 +86,4 @@
         ],
         });
     </script>
-</body>
-</html>
+<%- include('partials/footer') %>

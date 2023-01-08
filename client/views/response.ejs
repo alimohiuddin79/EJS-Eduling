@@ -33,7 +33,7 @@
                 <% if(request.responded == 1){ %>
                     <p>You already respond this user</p>
                 <% } else { %>
-                    <form action="/user/chat" method="post" name="response">
+                    <form action="/user/responses" method="post" name="response">
                         <h3>Your Response</h3>
                         <input type="hidden" name="studentId" value="<%=request.studentId%>">
                         <input type="hidden" name="requestId" value="<%=request._id%>">

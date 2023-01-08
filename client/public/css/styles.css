@@ -61,6 +61,17 @@ a{
 }
 .btn-edu-primary:hover{
     background-color: rgba(255, 255, 255, 0.60);
+    border: 1px solid black;
+}
+
+.btn-edu-secondary{
+    background-color: rgba(69, 158, 208, 1);
+    color: black;
+    transition: background-color 0.3s;
+}
+.btn-edu-secondary:hover{
+    background-color: rgba(69, 158, 208, 0.60);
+    border: 1px solid black;
 }
 
 
@@ -85,6 +96,19 @@ a{
 }
 .nav-link:hover{
     color: rgba(0, 0, 0, 1);
+}
+
+.user-name{
+    display: inline-block;
+    color: #459ED0;
+    font-weight: 100;
+    font-size: 24px;
+}
+
+.avatar{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
 }
 /* ----------- Header -----------*/
 
@@ -217,4 +241,14 @@ a{
 
 .signup-btn{
     margin: 28px 0;
+}
+/* ----------- Sign Up Page -----------*/
+
+/* ============================================== */
+
+/* ----------- Dashboard Page -----------*/
+.user-image{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
 }

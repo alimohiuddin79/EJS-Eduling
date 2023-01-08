@@ -33,32 +33,25 @@ const postUserResponse =  function(req, res){
             } else if(foundStudent){
                 if(foundStudent.responses.length != 0){
                     foundStudent.responses.forEach(function(response){
-                        if(requestId == response.requestId){
-                            res.send("You already sent response to this request");
-                        } 
-                    });
-                } else {
-                    foundStudent.responses.push({requestId: requestId, counsellorId: counsellorId, counsellorName: counsellorName, counsellorEmail: counsellorEmail,counsellorMessage: resMessage, date: date});
-                    foundStudent.save(function(err){
-                        if(err){
-                            console.log(err);
-                            res.send(err);
-                        } else {
-                            User.findById(counsellorId, function(err, foundCounsellor){
-                                foundCounsellor.requests.forEach(function(request){
-                                    if(request._id == requestId){
-                                        request.responded = 1;
-                                        foundCounsellor.save(function(){
+                        foundStudent.responses.push({requestId: requestId, counsellorId: counsellorId, counsellorName: counsellorName, counsellorEmail: counsellorEmail,counsellorMessage: resMessage, date: date});
+                        foundStudent.save(function(err){
+                            if(err){
+                                console.log(err);
+                                res.send(err);
+                            } else {
+                                User.findById(counsellorId, function(err, foundCounsellor){
+                                    foundCounsellor.requests.forEach(function(request){
+                                        if(request._id == requestId){
+                                            request.responded = 1;
+                                            foundCounsellor.save();
                                             res.redirect("/user/responses");
-                                        })
-                                    } else {
-                                        res.send("Something went wrong");
-                                    }
-                                })
-                            });
-                        }
+                                        }
+                                    });
+                                });
+                            }
+                        });
                     });
-                }
+                } 
             }
         });  
     }
