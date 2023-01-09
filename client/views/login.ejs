@@ -1,19 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-    <title>Login</title>
+<%- include('partials/header') %>
+<!-- Other css sheet link here -->
+<title>Sign Up</title>
 </head>
 <body>
-    <form action="/login" method="post">
-        <label for="username">Email</label>
-        <input type="email" name="username" id="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
-        <label for="password">Password</label>
-        <input type="password" name="password" id=""><br>
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+    <%- include('partials/navbar') %>
+    <div class="u-container" style="height: 64vh;">
+        <h4 class="sign-heading primary-color-heading text-center">Sign In to Eduling</h4>
+        <form action="/login" method="post" class="sign-form">    
+            <div class="mb-3">
+                <label for="username" class="form-label text-left">Email</label>
+                <input type="email" name="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="edulinguser@example.com" required autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label text-left">Password</label>
+                <input type="password" name="password" class="password form-control" pattern=".{8,}" required autocomplete="off">
+            </div>
+               
+            <div class="mb-3 text-center signup-btn">
+                <button class="btn btn-lg btn-edu-primary" type="submit">Sign In</button>
+            </div>
+            
+            <div class="mb-3 text-center">
+                <a href="/signup">Don't Have an Account?</a>
+            </div>
+            
+        </form>
+    </div>
+<%- include('partials/footer') %>

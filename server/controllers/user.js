@@ -37,12 +37,14 @@ const postSignup = function(req, res){
 
 // Login controllers
 const getLogin = function(req, res){
-    // if(req.isAuthenticated){
-    //     res.render("home");
-    // } else {
-    //     res.render("login");
-    // } 
-    res.render("login");
+    if(req.isAuthenticated()){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        res.render("home", {isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+    } else {
+        res.render("login", {isUserOnline: false});
+    } 
 }
 
 const postLogin = function(req, res){

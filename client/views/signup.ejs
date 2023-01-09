@@ -5,17 +5,23 @@
 <body>
     <%- include('partials/navbar') %>
     <div class="u-container">
-        <h4 class="signup-heading primary-color-heading text-center">Sign Up to Eduling</h4>
-        <form action="/signup" method="post" class="signup-form">
-            <div class="mb-3">
-                <label for="firstName" class="form-label text-left">First Name</label>
-                <input type="text" class="form-control" name="firstName" required autocomplete="off">
+        <h4 class="sign-heading primary-color-heading text-center">Sign Up to Eduling</h4>
+        <form action="/signup" method="post" class="sign-form">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label text-left">First Name</label>
+                        <input type="text" class="form-control" name="firstName" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label text-left">Last Name</label>
+                        <input type="text" name="lastName" class="form-control" autocomplete="off">
+                    </div>
+                </div>
             </div>
-            
-            <div class="mb-3">
-                <label for="lastName" class="form-label text-left">Last Name</label>
-                <input type="text" name="lastName" class="form-control" autocomplete="off">
-            </div>
+
             <div class="mb-3">
                 <label for="username" class="form-label text-left">Email</label>
                 <input type="email" name="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="edulinguser@example.com" required autocomplete="off">
@@ -57,5 +63,4 @@
             
         </form>
     </div>
-</body>
-</html>
+<%- include('partials/footer') %>

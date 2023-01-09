@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+<%- include('partials/header') %>
+<!-- Other css sheet link here -->
+<title>Contact Us</title>
 </head>
 <body>
-    <form action="/contact%20us" method="post">
-        <label for="name">Name</label><br>
-        <input type="text" name="name"><br>
-        <label for="email">Email</label><br>
-        <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><br>
-        <label for="message">Your Message</label><br>
-        <textarea name="message" cols="60" rows="6" style="resize: none;" placeholder="Your Question"></textarea>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</body>
-</html>
+    <%- include('partials/navbar') %>
+    <div class="u-container">
+        <h3 class="page-heading text-center">Contact Us</h3>
+        <form class="sign-form" action="/contact%20us" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control" required type="text" name="name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" required type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="message">Your Message</label>
+                <textarea class="form-control" required name="message" cols="60" rows="6" style="resize: none;" placeholder="Your Question"></textarea>
+            </div>
+            <button type="submit" class="btn btn-lg btn-edu-primary">Submit</button>
+        </form>
+    </div>
+<%- include('partials/footer') %>

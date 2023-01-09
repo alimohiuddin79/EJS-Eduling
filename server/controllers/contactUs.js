@@ -1,7 +1,14 @@
 const nodemailer = require("nodemailer");
 
 const getContactUs = function(req, res){
-    res.render("contact-us");
+    if(req.isAuthenticated()){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        res.render("contact-us", {isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+    } else {
+        res.render("contact-us", {isUserOnline: false});
+    }
 }
 
 const postContactUs = function(req, res){

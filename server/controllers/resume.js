@@ -1,5 +1,14 @@
 // Resume Builder controllers
-const getResume = function(req, res){res.render("resume")}
+const getResume = function(req, res){
+    if(req.isAuthenticated()){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        res.render("resume", {isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+    } else {
+        res.render("resume", {isUserOnline: false});
+    }
+}
 
 const postResume = function(req, res){
     res.render("resume-result", {
