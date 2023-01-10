@@ -1,42 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('partials/header') %>
     <title><%=requestedBlog.title%></title>
 </head>
 <body>
-    <div>
-        <img class="requestedBlog-img-preview" src="data:image/<%=requestedBlog.titleImg.contentType%>;base64,<%=requestedBlog.titleImg.data.toString('base64')%>" alt="" width="300" height="500">
-        <h3><%=requestedBlog.title%></h3>
-        <p><%=requestedBlog.authorName%></p>
-        <p><%=requestedBlog.createdAt%></p>
-        <p><%=requestedBlog.authorEmail%></p>
-        <p><%-requestedBlog.content%></p>
-    </div>
+    <%- include('partials/navbar') %>
+    <div class="u-container">
+        <div style="width: 78%; margin: auto;">
+            <div class="mb-4 mt-4 search-bar">
+                <form action="/search/blogs" method="post">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="search">
+                        <button class="btn btn-md btn-edu-secondary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+            <div class="mb-4 mt-4 text-center" style="margin: auto;">
+                <img class="banner-full-image text-center" src="data:image/<%=requestedBlog.titleImg.contentType%>;base64,<%=requestedBlog.titleImg.data.toString('base64')%>" alt="title-banner-image">
+            </div>
 
-    <div>
-        <h3>Blog Comments</h3>
-        <% if(showComment){ %>
-            <form action="/blogs/<%=requestedBlog._id%>" method="post">
-                <label for="comment">Type your comment</label>
-                <textarea name="comment" id="" cols="50" rows="4" style="resize: none"></textarea>
-                <input type="hidden" name="blogId" value="<%=requestedBlog._id%>">
-                <button type="submit">Submit</button>
-            </form>
-        <% } else { %>
-            <h3>Login to comment on Blog</h3>
-        <% } %>
-        
-        <% if(requestedBlog.comments.length != 0){ %>
-            <% requestedBlog.comments.forEach(function(comment){ %>
-                <p><%=comment.userId%></p>
-                <p><%=comment.name%></p>
-                <p><%=comment.body%></p>
-                <p><%=comment.date%></p>
-            <% }) %>
-        <% } %>
+            <div class="mb-4 mt-4">
+                    <h3 style="display: inline-block;" class="page-content-heading"><%=requestedBlog.title%></h3>
+                    <p class="ms-4" style="display: inline-block;">Created by <span class="author-name"><%=requestedBlog.authorName%></span></p>
+                    <p class="publish-date">Published Date: <%= requestedBlog.createdAt.toString().substring(4, 15) %></p> 
+            </div>
+
+            <div class="mb-4 mt-4">
+                <%-requestedBlog.content%>
+            </div>
+
+            <div class="mb-4 mt-4">
+                <h3 class="page-content-heading">Comments</h3>
+            </div>
+
+            <div class="mb-4 mt-4">
+                <% if(requestedBlog.comments.length != 0){ %>
+                    <% requestedBlog.comments.forEach(function(comment){ %>
+
+                        <div class="mb-3 mt-3">
+                            <!--  -->
+                            <div class="row">
+                                <div class="col-lg-1 col md-1 col-sm-1">
+                                    <div class="text-avatar">
+                                        <span class="align-middle avatar-character"><%= comment.name[0] %></span>
+                                    </div>
+                                </div>
+                                <div class="col comment">
+                                    <p class="avatar-name"><%=comment.name%></p>
+                                    <p class="comment-body"><%=comment.body%></p><span class="comment-date ms-2"><em>(<%=comment.date.substring(0,9)%>)</em></span>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } %>
+
+
+                <% if(isUserOnline){ %>
+                    <form action="/blogs/<%=requestedBlog._id%>" method="post">
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <label class="form-label" for="comment">Write your comment:</label>
+                                    <textarea class="form-control" name="comment" cols="50" rows="4" style="resize: none"></textarea>
+                                    <input type="hidden" name="blogId" value="<%=requestedBlog._id%>">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-md btn-edu-secondary" type="submit">Comment</button>
+                    </form>
+                <% } else { %>
+                    <h3 class="page-content-heading">Login to comment on Blogs</h3>
+                <% } %>   
+            </div>
+        </div>       
     </div>
-</body>
-</html>
+<%- include('partials/footer') %>

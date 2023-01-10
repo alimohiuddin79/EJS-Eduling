@@ -1,40 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<%- include('partials/header') %>
+    <title>Upload Question</title>
 </head>
 <body>
-    <form action="/upload%20question" method="post">
-        <label>Available Categories</label><br>
-        <% categories.forEach(function(category){ %>
-            <input type="radio" name="chosenCategory" value="<%=category%>" onclick="setCategory()">
-            <label><%=category%></label> 
-        <% }) %>
-        <br>   
-        <label>Choose or Create Category</label><br>
-        <label for="category">category</label><br>
-        <input type="text" name="category" placeholder="Computer || Engineering"><br>
+    <%- include('partials/navbar') %>
+    <div class="u-container">
+        <form class="sign-form" action="/upload%20question" method="post">
+            <div class="mb-3">
+                <label class="form-label">Available Categories</label><br>
+                <% categories.forEach(function(category){ %>
+                    <input class="form-check-input" type="radio" name="chosenCategory" value="<%=category%>" onclick="setCategory()">
+                    <label class="form-label"><%=category%></label> 
+                <% }) %>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Choose or Create Category</label><br>
+                <input class="form-control" type="text" name="category" placeholder="Computer || Engineering">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Available Fields</label><br>
+                <% fields.forEach(function(field){ %>
+                    <input class="form-check-input" type="radio" name="chosenField" value="<%=field%>" onclick="setField()">
+                    <label class="form-label"><%=field%></label> 
+                <% }) %>
+            </div>
 
-        <label>Available Fields</label><br>
-        <% fields.forEach(function(field){ %>
-            <input type="radio" name="chosenField" value="<%=field%>" onclick="setField()">
-            <label><%=field%></label> 
-        <% }) %>
-        <br>
-        <label for="field">field</label><br>
-        <input type="text" name="field"><br>
-
-        <label for="question">question</label><br>
-        <input type="text" name="question"><br>
-        <label for="options">options</label><br>
-        <input type="text" name="options" placeholder="option1, option2"><br>
-        <label for="answer">answer</label><br>
-        <input type="text" name="answer"><br>
-        <button type="submit" class="btn btn-primary">Submit Question</button>
-    </form>
+            <div class="mb-3">
+                <label class="form-label" for="field">Field</label>
+                <input class="form-control" type="text" name="field">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="question">Question</label><br>
+                <input class="form-control" type="text" name="question">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="options">Options</label>
+                <input class="form-control" type="text" name="options" placeholder="option1, option2">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="answer">Answer</label>
+                <input class="form-control" type="text" name="answer" placeholder="Should match with one of the options">
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-md btn-edu-secondary">Submit Question</button>
+            </div>
+            
+        </form>
+    </div>
 
     <script>
         function setCategory(){
@@ -46,5 +63,4 @@
             document.getElementsByName("field")[0].setAttribute("value", newValue);
         }
     </script>
-</body>
-</html>
+<%- include('partials/footer') %>

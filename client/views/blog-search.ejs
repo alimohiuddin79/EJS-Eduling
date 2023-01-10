@@ -1,32 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Result</title>
+<%- include('partials/header') %>
+    <title>Search Blogs</title>
 </head>
 <body>
-
-    <form action="/search/blogs" method="post">
-        <input type="text" name="search">
-        <button type="submit">Search</button>
-    </form>
-    <br>
-    <br>
-
-    <% if(requestedBlogs.length != 0){ %>
-        <% requestedBlogs.forEach(function(blog){ %>
-            <a href="/blogs/<%=blog._id%>">
-                <div>
-                    <img class="post-img-preview" src="data:image/<%=blog.titleImg.contentType%>;base64,<%=blog.titleImg.data.toString('base64')%>" alt="" width="300" height="500">
-                    <h3><%=blog.title%></h3>
+    <%-include ('partials/navbar') %>
+    <div class="u-container">
+        <div class="mb-4 mt-4 search-bar">
+            <form action="/search/blogs" method="post">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="search">
+                    <button class="btn btn-md btn-edu-secondary" type="submit">Search</button>
                 </div>
-            </a>  
-        <% }) %>
-    <% } else { %>
-        <h3>No blogs found</h3>
-    <% } %>
+            </form>
+        </div>
 
-</body>
-</html>
+        <% if(requestedBlogs.length != 0){ %>
+            <div class="row mt-5">
+                <% requestedBlogs.forEach(function(blog){ %>
+                    <div class="col col-xl-4 col-lg-6 col-md-12 col-sm-12">
+                        <a href="/blogs/<%=blog._id%>">
+                            <div>
+                                <div class="mb-3">
+                                  <img class="blog-banner-image" src="data:image/<%=blog.titleImg.contentType%>;base64,<%=blog.titleImg.data.toString('base64')%>" alt="banner-image">
+                                </div>
+                                <div class="mb-3">
+                                  <h3 class="blog-card-heading me-2"><%=blog.title%></h3><p class="blog-card-date">(<%= blog.createdAt.toString().substring(4, 15) %>)</p>
+                                  <p class="blog-card-author-name"><%=blog.authorName%></p>
+                                </div> 
+                            </div>
+                        </a>
+                    </div>
+                <% }) %>     
+            </div>
+        <% } else { %>
+            <h3 class="page-heading">No blogs found</h3>
+        <% } %>
+    </div>
+
+<%- include('partials/footer') %>

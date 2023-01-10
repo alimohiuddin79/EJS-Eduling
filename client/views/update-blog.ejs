@@ -1,35 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('partials/header') %>
     <script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <title>Update blog</title>
 </head>
 <body>
-    <% if(requestedBlog.titleImg != null){ %>
-        <img class="requestedBlog-img-preview" src="data:image/<%=requestedBlog.titleImg.contentType%>;base64,<%=requestedBlog.titleImg.data.toString('base64')%>" alt="" width="120" height="180">
-    <% } %>
+    <%- include('partials/navbar')%>
+    <div class="u-container">
+        <div class="mb-3 text-center">
+            <% if(requestedBlog.titleImg != null){ %>
+                <img class="blog-banner-image" src="data:image/<%=requestedBlog.titleImg.contentType%>;base64,<%=requestedBlog.titleImg.data.toString('base64')%>" alt="banner-image">
+            <% } %>
+        </div>
+        
+        <div class="mb-3 text-center" style="width: 320px; margin: auto;">
+            <form action="/update/blogImage/<%=requestedBlog._id%>" method="post" enctype="multipart/form-data">
+                <input class="form-control mb-3" type="file" name="postImage" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required>
+                <button class="btn btn-md btn-edu-secondary" type="submit">Update Banner Image</button>
+            </form>
+        </div>  
     
-
-    <form action="/update/blogImage/<%=requestedBlog._id%>" method="post" enctype="multipart/form-data">
-        <label for="userImg">Update Blog Title Image</label><br>
-        <input type="file" name="postImage" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required><br>
-        <button type="submit">Update Title Image</button>
-    </form>
-
-    <form action="/update/status/<%=requestedBlog._id%>" method="post">
-        <label for="title">Title</label><br>
-        <input type="text" name="title" value="<%=requestedBlog.title%>"><br>
-        <label for="content">Content</label><br>
-        <textarea name="content" cols="80" rows="8" style="resize: none;"><%-requestedBlog.content%></textarea><br>
-        <button type="submit">Update Title and Content</button>
-    </form>
-
-    <form id="delete" action="/delete/<%=requestedBlog._id%>" method="post">
-        <button type="button" onclick="checkConfirm()">Delete Blog</button>
-    </form>
+        <div class="mb-3">
+            <form action="/update/status/<%=requestedBlog._id%>" method="post">
+                <label class="form-label" for="title">Title</label><br>
+                <input class="form-control mb-3" type="text" name="title" value="<%=requestedBlog.title%>">
+                <label class="form-label" for="content">Content</label>
+                <textarea name="content" cols="80" rows="8" style="resize: none;"><%-requestedBlog.content%></textarea>
+                <!-- update button -->
+                <button class="btn btn-md btn-edu-secondary mt-3" type="submit">Update Blog</button>
+            </form>
+            <!-- delete button -->
+            <form id="delete" action="/delete/<%=requestedBlog._id%>" method="post">
+                <button class="btn btn-md btn-edu-tertiary mt-3" type="button" onclick="checkConfirm()">Delete Blog</button>
+            </form>
+        </div>
+    
+        
+ 
+    </div>
+    
 
     <script>
         // set limit of title image up to 1MB
@@ -65,5 +72,4 @@
         ],
         });
     </script>
-</body>
-</html>
+<%- include('partials/footer') %>

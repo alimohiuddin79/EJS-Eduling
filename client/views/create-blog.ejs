@@ -1,39 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <title>Create Blog Post</title>
+<%- include('partials/header') %>
+<script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<title>Create Blog</title>
 </head>
 <body>
-    <!-- Submit New Post -->
-  <form action="/create" method="post" enctype="multipart/form-data">
-    <label for="postImage">Upload title image (optional)</label><br>
-    <input type="file" name="postImage" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp"><br>
-    <label for="title">Title</label><br>
-    <input type="text" name="title" width="30%" required><br>
-    <label for="content">Write your blog content</label><br>
-    <textarea name="content">
-        Welcome to Eduling
-    </textarea><br>
-    <button type="submit" name="button">Submit</button>
-  </form>
+  <%- include('partials/navbar') %>
+  <!-- Submit New Post -->
+  <div class="u-container">
+    <form action="/create" method="post" enctype="multipart/form-data">
+      <div class="mb-3 text-center" style="width: 320px; margin: auto;">
+        <label class="form-label" for="postImage">Upload Banner Image</label>
+        <input class="form-control" type="file" name="postImage" id="file" accept="image/png,image/jpeg,image/jpg,image/gif,.webp" required>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label" for="title">Title</label>
+        <input class="form-control" type="text" name="title" required>
+      </div>
 
-  <% if(adminBlogs.length != 0){ %>
-    <h2>Your Blogs</h2>
-    <% adminBlogs.forEach(function(blog){ %>
-        <a href="/update/<%=blog._id%>">
-            <div>
-                <img class="blog-img-preview" src="data:image/<%=blog.titleImg.contentType%>;base64,<%=blog.titleImg.data.toString('base64')%>" alt="" width="120" height="200">
-                <h3><%=blog.title%></h3>
-                <p>blog.authorName</p>
-            </div>
-        </a>
-        <br>
-    <% }) %>
-  <% } %>
+      <div class="mb-3">
+        <label class="form-label" for="content">Blog Content</label>
+        <textarea name="content">
+          Welcome to Eduling
+        </textarea>
+      </div>
+      
+      <div class="mb-3">
+        <button class="btn btn-md btn-edu-secondary" type="submit" name="button">Create Blog</button>
+      </div>
+      
+    </form>
+  
+    <% if(adminBlogs.length != 0){ %>
+      <h3 class="page-heading text-center mt-4 mb-4">Your Blogs</h3>
+      <div class="row">
+        <% adminBlogs.forEach(function(blog){ %>
+          <div class="col col-xl-4 col-lg-6 col-md-12 col-sm-12">
+            <a href="/update/<%=blog._id%>">
+              <div>
+                <div class="mb-3">
+                  <img class="blog-banner-image" src="data:image/<%=blog.titleImg.contentType%>;base64,<%=blog.titleImg.data.toString('base64')%>" alt="banner-image">
+                </div>
+                <div class="mb-3">
+                  <h3 class="blog-card-heading me-2"><%=blog.title%></h3><p class="blog-card-date">(<%= blog.createdAt.toString().substring(4, 15) %>)</p>
+                  <p class="blog-card-author-name"><%=blog.authorName%></p>
+                </div> 
+              </div>
+            </a>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+    
   
   <script>
     // set limit of title image up to 1MB
@@ -61,5 +79,4 @@
       ],
     });
   </script>
-</body>
-</html>
+<%- include('partials/footer') %>

@@ -38,7 +38,14 @@ const getBlogs = app.get("/blogs", function(req, res){
     if(err) {
       console.log(err);
     } else {
-        res.render("blogs", {blogPosts: foundBlogs});
+      if(req.isAuthenticated()){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        res.render("blogs", {isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true, blogPosts: foundBlogs});
+      } else {
+        res.render("blogs", {isUserOnline: false, blogPosts: foundBlogs});
+    }
     }
   });
 });
@@ -48,42 +55,52 @@ const getBlogById = app.get("/blogs/:blogId", function(req, res){
   const blogId = req.params.blogId;
   
   Blog.findById(blogId, function(err, foundBlog){
-    res.render("blog-page", {requestedBlog: foundBlog, showComment: req.isAuthenticated()});
+    if(req.isAuthenticated()){
+      const userName = req.user.name;
+      const userImg = req.user.userImg;
+      const isAdmin = req.user.admin;
+      res.render("blog-page", {requestedBlog: foundBlog, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+    } else {
+      res.render("blog-page", {requestedBlog: foundBlog, isUserOnline: false});
+    }
   });
 });
 
 // post comment request by users
 const postComment = app.post("/blogs/:blogId", function(req, res){
-  // const blogId = req.body.blogId;
-  const blogId = req.params.blogId;
-  const name = req.user.name;
-  const comment = req.body.comment;
-  let date = new Date;
-  date = date.toLocaleString();
+  if(req.isAuthenticated()){
+    const blogId = req.params.blogId;
+    const name = req.user.name;
+    const comment = req.body.comment;
+    let date = new Date;
+    date = date.toLocaleString();
 
-  Blog.findById(blogId, function(err, foundBlog){
-    if(err){
-      console.log(err);
-    } else if(foundBlog){
-      foundBlog.comments.push({userId: req.user._id, name: name, date: date, body: comment});
-      foundBlog.save(function(){
-        res.redirect("/blogs/"+blogId);
-      })
-    }
-  })
+    Blog.findById(blogId, function(err, foundBlog){
+      if(err){
+        console.log(err);
+      } else if(foundBlog){
+        foundBlog.comments.push({userId: req.user._id, name: name, date: date, body: comment});
+        foundBlog.save(function(){
+          res.redirect("/blogs/"+blogId);
+        });
+      }
+    })
+  } 
 });
 
 // get request to create blog by admin
 const getCreateBlog = app.get("/create", function(req, res){
     if(req.isAuthenticated() && req.user.admin == 1){
       const adminId = req.user._id;
-
+      const userName = req.user.name;
+      const userImg = req.user.userImg;
+      const isAdmin = req.user.admin;
       Blog.find({adminId: adminId}, function(err, foundBlogs){
         if(err){
           console.log(err);
           res.send(err);
         } else {
-          res.render("create-blog", {adminBlogs: foundBlogs});
+          res.render("create-blog", {adminBlogs: foundBlogs, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
         }
       })
     } else if (req.isAuthenticated()){
@@ -118,9 +135,11 @@ const getBlogByAdmin = app.get("/update/:blogId", function(req, res){
 
   if(req.isAuthenticated() && req.user.admin == 1){
     const blogId = req.params.blogId;
-  
+    const userName = req.user.name;
+    const userImg = req.user.userImg;
+    const isAdmin = req.user.admin;
     Blog.findById(blogId, function(err, foundBlog){
-      res.render("update-blog", {requestedBlog: foundBlog, showComment: req.isAuthenticated()});
+      res.render("update-blog", {requestedBlog: foundBlog, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
     });
   } else {
     res.send("Only admin can access this route");

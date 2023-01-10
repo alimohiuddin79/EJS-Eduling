@@ -5,7 +5,9 @@ const Question = require("../models/question");
 
 const getQuestion = function(req, res){
     if(req.isAuthenticated() && req.user.admin == 1){
-
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
         // Upper query
         Question.distinct("category", function(err, foundCategories){
             if(err){
@@ -20,7 +22,7 @@ const getQuestion = function(req, res){
                         res.send("Something went wrong");
                     } else {
                         const fields = foundFields;
-                        res.render("upload-question", {categories: categories, fields: fields});
+                        res.render("upload-question", {categories: categories, fields: fields, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
                     }
                 });  
             }

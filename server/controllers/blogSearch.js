@@ -8,7 +8,14 @@ const postBlogSearch = function(req, res){
             console.log(err);
             res.send(err);
         } else {
-            res.render("blog-search", {requestedBlogs: foundBlogs});
+            if(req.isAuthenticated()){
+                const userName = req.user.name;
+                const userImg = req.user.userImg;
+                const isAdmin = req.user.admin;
+                res.render("blog-search", {isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+            } else {
+                res.render("blog-search", {requestedBlogs: foundBlogs, isUserOnline: false});
+            }
         }
     });
 }
