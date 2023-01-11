@@ -4,18 +4,20 @@ const User = require("../models/user");
 
 const app = express.Router();
 
-const getHireCounsellorById = app.get("/hirecounsellor/:counsellorId/confirm%20details", function(req, res){
+const getHireCounsellorById = app.get("/hirecounsellor/:counsellorId", function(req, res){
     if(req.isAuthenticated() && req.user.type == 0){
         const counsellorId = req.params.counsellorId;
         const userEmail = req.user.username;
         const userName = req.user.name;
-        res.render("hire-counsellor", {counsellorId: counsellorId, userEmail: userEmail, userName: userName});
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        res.render("hire-counsellor", {isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true, counsellorId: counsellorId, userEmail: userEmail});
     } else {
-        res.send("Unauthorized User");
+        res.send("Only Students can visit this page");
     }
 });
 
-const postHireCounsellorById = app.post("/hirecounsellor/:counsellorId/confirm%20details", function(req, res){
+const postHireCounsellorById = app.post("/hirecounsellor/:counsellorId", function(req, res){
     if(req.isAuthenticated() && req.user.type == 0){
         const studentId = req.user._id;
         const counsellorId = req.params.counsellorId;

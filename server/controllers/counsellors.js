@@ -10,20 +10,29 @@ const getCounsellors = app.get("/counsellors", function(req, res){
             console.log(err);
             res.send(err);
         } else {
-            res.render("counsellors",{counsellors: foundCounsellors}); 
+            if(req.isAuthenticated()){
+                const userName = req.user.name;
+                const userImg = req.user.userImg;
+                const isAdmin = req.user.admin;
+                res.render("counsellors",{counsellors: foundCounsellors, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+            } else {
+                res.render("counsellors",{counsellors: foundCounsellors, isUserOnline: false}); 
+            }
         }
     });
 });
 
 const getCounsellorById = app.get("/counsellors/:counsellorId", function(req, res){
     const requestedId = req.params.counsellorId;
-    const checkLogin = req.isAuthenticated();
 
     User.findById(requestedId, function(err, foundCounsellor){
-        if(checkLogin){
-            res.render("counsellor-profile", {userType: req.user.type, requestedCounsellor: foundCounsellor, isAuth: checkLogin});
+        if(req.isAuthenticated()){
+            const userName = req.user.name;
+            const userImg = req.user.userImg;
+            const isAdmin = req.user.admin;
+            res.render("counsellor-profile", {userType: req.user.type, requestedCounsellor: foundCounsellor, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
         } else {
-            res.render("counsellor-profile", {requestedCounsellor: foundCounsellor, isAuth: checkLogin});
+            res.render("counsellor-profile", {requestedCounsellor: foundCounsellor, isUserOnline: false});
         }  
     });
 });

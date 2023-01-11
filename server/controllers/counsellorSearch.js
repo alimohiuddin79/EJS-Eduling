@@ -8,7 +8,14 @@ const postCounsellorSearch = function(req, res){
             console.log(err);
             res.send(err);
         } else {
-            res.render("counsellor-search", {requestedCounsellors: foundCounsellors});
+            if(req.isAuthenticated()){
+                const userName = req.user.name;
+                const userImg = req.user.userImg;
+                const isAdmin = req.user.admin;
+                res.render("counsellor-search", {requestedCounsellors: foundCounsellors, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+            } else {
+                res.render("counsellor-search", {requestedCounsellors: foundCounsellors, isUserOnline: false});
+            }
         }
     });
 }

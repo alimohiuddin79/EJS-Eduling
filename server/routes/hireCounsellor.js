@@ -3,6 +3,6 @@ const {getHireCounsellorById, postHireCounsellorById} = require("../controllers/
 
 const app = express.Router();
 
-app.route("/hirecounsellor/:counsellorId/confirm%20details").get(getHireCounsellorById).post(postHireCounsellorById);
+app.route("/hirecounsellor/:counsellorId").get(getHireCounsellorById).post(postHireCounsellorById);
 
 module.exports = app;

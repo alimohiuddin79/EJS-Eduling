@@ -1,44 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requested Counsellor</title>
+<%- include('partials/header') %>
+    <title><%=requestedCounsellor.name%></title>
 </head>
 <body>
-    <div>
-        <% if(requestedCounsellor.userImg != null) { %>
-            <img src="data:image/<%=requestedCounsellor.userImg.contentType%>;base64,<%=requestedCounsellor.userImg.data.toString('base64')%>" alt="counsellor-avatar" width="250" height="250">
-        <% } %>
+    <%- include('partials/navbar') %>
+    <div class="u-container">
+        <div class="row mb-5">
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <% if(requestedCounsellor.userImg != null) { %>
+                    <img class="counsellor-full-avatar" src="data:image/<%=requestedCounsellor.userImg.contentType%>;base64,<%=requestedCounsellor.userImg.data.toString('base64')%>" alt="counsellor-avatar">
+                <% } %>
+            </div>
 
-        <p style="font-style: italic;">Categories</p>
-        <% if(requestedCounsellor.categories != null) { %>
-            <% requestedCounsellor.categories.forEach(function(category){ %>
-                <h6 style="display: inline-block;">#<%=category%></h6>
-            <% }) %>
-        <% } %>
+            <div class="col">
+                <div class="mb-5 mt-5">
+                    <h5><span class="counsellor-card-category"><em>Categories</em></span></h5>
+                    <% if(requestedCounsellor.categories.length != 0) { %>
+                        <% requestedCounsellor.categories.forEach(function(category){ %>
+                            <h6 style="display: inline-block;">#<%=category%></h6>
+                        <% }) %>
+                    <% } %>
+                    <h5><span class="counsellor-card-category"><em>Description</em></span></h5>
+                    <%-requestedCounsellor.bio%>
+                </div> 
+            </div>
 
-        <p style="font-style: italic;">Description</p>
-        <p><%=requestedCounsellor.bio%></p>
-
-        <h3>Available Timings</h3>
-        <% if(requestedCounsellor.timings != null) { %>
-            <ul>
-            <% requestedCounsellor.timings.forEach(function(timing){ %>
-                <li><%=timing%></li>
-            <% }) %>
-            </ul>
-        <% } %>
-
-        <% if(isAuth && userType == 0){ %>
-            <a href="/hirecounsellor/<%=requestedCounsellor._id%>/confirm%20details" >Hire <%=requestedCounsellor.name%></a>
-        <% } else if(isAuth && userType == 1) { %>
-            <h3>Only Students can Hire a counsellor</h3>
-        <% } else { %>
-            <h3>Please Sign In to Hire a Counsellor</h3>
-        <% } %>
-        
+            <div class="col-lg-2 col-md-3 col-sm-12 card-background">
+                <div class="mb-2 mt-5 text-center">
+                    <h4 class="timing-heading mb-4">Available Timings</h4>
+                </div>
+                <div class="mb-4">
+                    <% if(requestedCounsellor.timings != null) { %>
+                        <ul>
+                        <% requestedCounsellor.timings.forEach(function(timing){ %>
+                            <li><%=timing%></li>
+                        <% }) %>
+                        </ul>
+                    <% } %>
+                </div>
+                <div class="mb-3 mt-3 text-center">
+                    <% if(isUserOnline && userType == 0){ %>
+                        <button class="btn btn-lg btn-edu-primary" onclick="window.location.href='/hirecounsellor/<%=requestedCounsellor._id%>/confirm%20details'">Hire</button>
+                    <% } else if(isUserOnline && userType == 1) { %>
+                        <h3 class="page-content-heading">Only Students can hire a counsellors</h3>
+                    <% } else { %>
+                        <h3 class="page-content-heading">Please Sign In to Hire a Counsellor</h3>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+       
     </div>
-</body>
-</html>
+
+<%- include('partials/footer') %>

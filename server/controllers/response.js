@@ -3,10 +3,15 @@ const passport = require("passport");
 const User = require("../models/user");
 
 const getUserRequestAndResponse = function(req, res){
-    if(req.isAuthenticated() && req.user.type == 0){
-        res.render("response", {userType: req.user.type, counsellorResponses: req.user.responses, message: null});
-    } else if(req.isAuthenticated() && req.user.type == 1){
-        res.render("response", {userType: req.user.type, studentRequests: req.user.requests, message: null});
+    if(req.isAuthenticated()){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        if(req.user.type == 0){
+            res.render("response", {userType: req.user.type, counsellorResponses: req.user.responses, message: null, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+        } else if(req.user.type == 1){
+            res.render("response", {userType: req.user.type, studentRequests: req.user.requests, message: null, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+        }
     } else {
         res.redirect("/login");
     }

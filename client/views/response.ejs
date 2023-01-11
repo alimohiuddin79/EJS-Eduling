@@ -1,54 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%- include('partials/header') %>
     <script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <title>Chat</title>
+    <title>
+        <% if(userType == 0){ %>
+            Responses
+        <% } else{ %>
+            Requests
+        <% } %>
+    </title>
 </head>
 <body>
-
-    <% if(userType == 0){ %>
-
-        <% if(counsellorResponses != null){ %>
-            <% counsellorResponses.forEach(function(response){ %>
-                <p><i><%=response.date%></i></p>
-                <h5><%=response.counsellorName%> send you response</h5>
-                <p><strong><%=response.counsellorName%> Contact Email: <%=response.counsellorEmail%></strong></p>
-                <p><%-response.counsellorMessage%></p>
-            <% }) %>
-        <% } else { %>
-            <h1>Responses are empty</h1>
+    <%- include('partials/navbar') %>
+    <div class="u-container" style="height: 78vh;">
+        <% if(userType == 0){ %>
+            <% if(counsellorResponses != null){ %>
+                <% counsellorResponses.forEach(function(response){ %>
+                    <div class="mb-4 response-card">
+                        <span class="date"><em>(<%=response.date.substring(0,8)%>)</em></span>
+                        <h4><%=response.counsellorName%> send you response</h4>
+                        <p><strong><%=response.counsellorName%> Contact Email: <%=response.counsellorEmail%></strong></p>
+                        <div class="mt-3">
+                            <%-response.counsellorMessage%>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h3 class="page-heading text-center">Responses are empty</h3>
+            <% } %>
+        <% } else if(userType == 1){ %>
+            <% if(studentRequests != null){ %>
+                <% studentRequests.forEach(function(request){ %>
+                    <div class="mb-4 response-card">
+                        <span class="date"><em>(<%=request.date.substring(0,8)%>)</em></span>
+                        <h4><%=request.studentName%> requested you for counselling</h4>
+                        <p><strong><%=request.studentName%> Contact Email: <%=request.studentEmail%></strong></p>
+                        <div class="mt-3">
+                            <%-request.studentMessage%>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <% if(request.responded == 1){ %>
+                                <h5 class="edu-primary-color">You already respond this user</h5>
+                            <% } else { %>
+                                <form action="/user/responses" method="post" name="response">
+                                    <h4>Your Response</h4>
+                                    <input type="hidden" name="studentId" value="<%=request.studentId%>">
+                                    <input type="hidden" name="requestId" value="<%=request._id%>">
+                                    <textarea name="message" style="resize: none;" placeholder="Your Response"></textarea>
+                                    <button class="btn btn-md btn-edu-secondary" type="submit">Send Response</button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <h3 class="page-heading text-center">Requests are empty</h3>
+            <% } %>
         <% } %>
+    </div>
+    
 
-    <% } else if(userType == 1){ %>
-        <% if(studentRequests != null){ %>
-            <% studentRequests.forEach(function(request){ %>
-                <p><i><%=request.date%></i></p>
-                <h5><%=request.studentName%> requested you for counselling</h5>
-                <p><strong><%=request.studentName%> Contact Email: <%=request.studentEmail%></strong></p>
-                <p><%-request.studentMessage%></p>
-                <br>
-                <% if(request.responded == 1){ %>
-                    <p>You already respond this user</p>
-                <% } else { %>
-                    <form action="/user/responses" method="post" name="response">
-                        <h3>Your Response</h3>
-                        <input type="hidden" name="studentId" value="<%=request.studentId%>">
-                        <input type="hidden" name="requestId" value="<%=request._id%>">
-                        <textarea name="message" style="resize: none;" placeholder="Your Response"></textarea><br>
-                        <button type="submit">Send Response</button>
-                    </form>
-                <% } %>
-                <% if(message != null){ %>
-                    <p style="color: blue;"><%=message%></p>
-                <% } %>
-            <% }) %>
-        <% } else { %>
-            <h1>Requests are empty</h1>
-        <% } %>
-    <% } %>
+    
 
     <script>
         // tinymce text editor function
@@ -66,5 +76,5 @@
         ],
         });
     </script>
-</body>
-</html>
+
+<%- include('partials/footer') %>

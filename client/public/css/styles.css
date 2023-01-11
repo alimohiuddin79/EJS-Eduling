@@ -109,6 +109,12 @@ a:link, a:visited{
     background-color: rgba(164, 100, 72, 0.60);
     border: 1px solid black;
 }
+
+.date{
+    color: #D9D9D9;
+    font-weight: 700;
+    font-size: 16px;
+}
 /*--------- Buttons ---------*/
 
 /* ============================================== */
@@ -367,9 +373,53 @@ a:link, a:visited{
     display: inline-block;
 }
 
-.comment-date{
-    color: #D9D9D9;
-    font-weight: 700;
-    font-size: 16px;
+
+/* ----------- Blogs Styling -----------*/
+
+/* ============================================== */
+
+/* ----------- Counsellors Styling -----------*/
+
+.counsellor-card{
+   width: 96%;
+   margin: auto;
 }
 
+.counsellor-card-image{
+    width: 360px;
+    height: 360px;
+    border-radius: 12px;
+}
+
+.counsellor-card-category{
+    color: #36F8B2;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.counsellor-full-avatar{
+    width: 340px;
+    height: 460px;
+    border-radius: 12px;
+}
+
+.timing-heading{
+    color: #36F8B2;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.card-background{
+    background-color: rgba(217, 217, 217, .60);
+    border-radius: 12px;
+}
+/* ----------- Counsellors Styling -----------*/
+
+/* ============================================== */
+
+/* ----------- Responses & Requests Styling -----------*/
+.response-card{
+    border: 1px solid black; 
+    border-radius: 22px; 
+    padding: 8px 12px;
+}
