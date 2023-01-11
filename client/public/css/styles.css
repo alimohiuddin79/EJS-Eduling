@@ -24,6 +24,10 @@ a:link, a:visited{
     background-size: cover;
 }
 
+.u-container::-webkit-scrollbar {
+    display: none;
+}
+
 .edu-primary-color{
     color: #36F8B2;
 }
@@ -423,3 +427,94 @@ a:link, a:visited{
     border-radius: 22px; 
     padding: 8px 12px;
 }
+/* ----------- Responses & Requests Styling -----------*/
+
+/* ============================================== */
+
+/* ----------- Questionnaire Styling -----------*/
+.vectorImg img {
+    width: 80%;
+}
+
+.vectorImg {
+    text-align: center;
+}
+
+.Quizh2 {
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.chart-box {
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+
+/* Questionaire start*/
+.quesField {
+    text-align: center;
+}
+
+.start-quiz {
+    background-image: url("../assets/BG_questionaire.png");
+    height: 600px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.btn-start{
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 10px 22px;
+    background-color: #36F8B2;
+}
+
+
+@media only screen and (max-width: 1440px) {
+    .start-quiz {
+        height: 440px;
+    }
+  }
+@media only screen and (max-width: 1280px) {
+    .start-quiz {
+        height: 400px;
+    }
+  }
+@media only screen and (max-width: 1024px) {
+    .start-quiz {
+        height: 310px;
+    }
+  }
+@media only screen and (max-width: 880px) {
+    .start-quiz {
+        height: 270px;
+    }
+  }
+@media only screen and (max-width: 680px) {
+    .start-quiz {
+        height: 220px;
+    }
+    .btn-start{
+        padding: 7px 12px;
+        font-size: 14px;
+    }
+  }
+@media only screen and (max-width: 475px) {
+    .start-quiz {
+        height: 130px;
+        }
+  }
+@media only screen and (max-width: 325px) {
+    .start-quiz {
+        height: 105px;
+        }
+  }
+/* Questionaire end*/

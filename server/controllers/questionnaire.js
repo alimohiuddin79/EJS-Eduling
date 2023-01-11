@@ -8,7 +8,14 @@ const getStartQuestionnaire = function(req, res){
             console.log(err);
             res.send("Something went wrong");
         } else {
-            res.render("start-questionnaire", {categories: foundCategories});
+            if(req.isAuthenticated()){
+                const userName = req.user.name;
+                const userImg = req.user.userImg;
+                const isAdmin = req.user.admin;
+                res.render("start-questionnaire", {categories: foundCategories, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+            } else {
+                res.render("start-questionnaire", {categories: foundCategories, isUserOnline: false});
+            }
         }
     });
 }
@@ -23,7 +30,14 @@ const getQuestionnaire = function(req, res){
     const questions = Question.find({category: requestedCategory}).limit(20)
     questions.exec(function(err, foundQuestions){
         if(!err){
-            res.render("questionnaire", {requestedCategory: requestedCategory, questions: foundQuestions});
+            if(req.isAuthenticated()){
+                const userName = req.user.name;
+                const userImg = req.user.userImg;
+                const isAdmin = req.user.admin;
+                res.render("questionnaire", {requestedCategory: requestedCategory, questions: foundQuestions, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+            } else {
+                res.render("questionnaire", {requestedCategory: requestedCategory, questions: foundQuestions, isUserOnline: false});
+            } 
         } else {
             console.log(err);
             res.send("Something went wrong");

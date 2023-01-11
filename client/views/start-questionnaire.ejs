@@ -1,19 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<%- include('partials/header') %>
+    <title>Start Questionnaire</title>
 </head>
 <body>
-    <h1>Choose Category</h1>
-    <form action="/start%20questionnaire" method="post">
-        <% categories.forEach(function(category){ %>
-        <input type="radio" name="chosenCategory" value="<%=category%>">
-        <label><%=category%></label> 
-        <% }) %>
-        <button type="submit">Start</button>
-    </form>
-</body>
-</html>
+    <%- include('partials/navbar') %>
+    <section>
+        <div class="u-container">
+            <form action="/start%20questionnaire" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="quesField">
+                            <h3 class="page-heading mb-4">Questionnaire</h3>
+                            <h4 class="page-content-heading mt-3 mb-5">Choose Your Favorite Category</h4>
+                            <div class="choose-category">
+                                <% categories.forEach(function(category){ %>
+                                    <input class="form-check-input" type="radio" name="chosenCategory" value="<%=category%>" required>
+                                    <label class="form-check-label"><%=category%></label> 
+                                <% }) %>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-12">
+                        <div class="start-quiz">
+                            <button class="btn btn-lg btn-edu-primary">Start Quiz</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </section>
+
+<%- include('partials/footer') %>

@@ -39,7 +39,7 @@
                 </div>
                 <div class="mb-3 mt-3 text-center">
                     <% if(isUserOnline && userType == 0){ %>
-                        <button class="btn btn-lg btn-edu-primary" onclick="window.location.href='/hirecounsellor/<%=requestedCounsellor._id%>/confirm%20details'">Hire</button>
+                        <button class="btn btn-lg btn-edu-primary" onclick="window.location.href='/hirecounsellor/<%=requestedCounsellor._id%>'">Hire</button>
                     <% } else if(isUserOnline && userType == 1) { %>
                         <h3 class="page-content-heading">Only Students can hire a counsellors</h3>
                     <% } else { %>

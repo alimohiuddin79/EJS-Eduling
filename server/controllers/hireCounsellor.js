@@ -19,6 +19,9 @@ const getHireCounsellorById = app.get("/hirecounsellor/:counsellorId", function(
 
 const postHireCounsellorById = app.post("/hirecounsellor/:counsellorId", function(req, res){
     if(req.isAuthenticated() && req.user.type == 0){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
         const studentId = req.user._id;
         const counsellorId = req.params.counsellorId;
         const reqName = req.body.name;
@@ -35,7 +38,7 @@ const postHireCounsellorById = app.post("/hirecounsellor/:counsellorId", functio
                 const counsellorName = foundCounsellor.name;
                 foundCounsellor.requests.push({studentId: studentId, studentName: reqName, studentEmail: reqEmail, studentMessage: reqMessage, date: date});
                 foundCounsellor.save(function(){
-                    res.render("success", {counsellorName: counsellorName});
+                    res.render("success", {counsellorName: counsellorName, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
                 });
             }
         });

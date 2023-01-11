@@ -10,12 +10,12 @@
 </head>
 <body>
     <%- include('partials/navbar') %>
-    <div class="u-container" style="height: 78vh;">
+    <div class="u-container" style="height: 86vh; overflow: scroll; overflow-x: hidden;">
         <% if(userType == 0){ %>
             <% if(counsellorResponses != null){ %>
                 <% counsellorResponses.forEach(function(response){ %>
                     <div class="mb-4 response-card">
-                        <span class="date"><em>(<%=response.date.substring(0,8)%>)</em></span>
+                        <span class="date"><em>(<%=response.date.split(",")[0]%>)</em></span>
                         <h4><%=response.counsellorName%> send you response</h4>
                         <p><strong><%=response.counsellorName%> Contact Email: <%=response.counsellorEmail%></strong></p>
                         <div class="mt-3">
@@ -30,7 +30,7 @@
             <% if(studentRequests != null){ %>
                 <% studentRequests.forEach(function(request){ %>
                     <div class="mb-4 response-card">
-                        <span class="date"><em>(<%=request.date.substring(0,8)%>)</em></span>
+                        <span class="date"><em>(<%=request.date.split(",")[0]%>)</em></span>
                         <h4><%=request.studentName%> requested you for counselling</h4>
                         <p><strong><%=request.studentName%> Contact Email: <%=request.studentEmail%></strong></p>
                         <div class="mt-3">
@@ -45,7 +45,7 @@
                                     <input type="hidden" name="studentId" value="<%=request.studentId%>">
                                     <input type="hidden" name="requestId" value="<%=request._id%>">
                                     <textarea name="message" style="resize: none;" placeholder="Your Response"></textarea>
-                                    <button class="btn btn-md btn-edu-secondary" type="submit">Send Response</button>
+                                    <button class="btn btn-md btn-edu-secondary mt-4" type="submit">Send Response</button>
                                 </form>
                             <% } %>
                         </div>

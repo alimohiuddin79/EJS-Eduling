@@ -1,0 +1,39 @@
+    <%- include('partials/header') %>
+    <script src="https://cdn.tiny.cloud/1/gwnupy4nvlshpim31wh0p406bc1kewk7xqlegl2ph1lq1dup/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <title>Hire a Counsellor</title>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="u-container">
+        <h3 class="page-heading text-center">Your Request Message</h3>
+        <div class="mb-4 mt-4">
+            <form name="details" action="/hirecounsellor/<%=counsellorId%>" method="post">
+                <input type="hidden" name="name" value="<%=userName%>">
+                <input type="hidden" name="email" value="<%=userEmail%>">
+                <textarea name="message" placeholder="Your Message"></textarea>
+                <div class="mt-3 mb-3">
+                    <input class="form-check-input" type="checkbox" id="checkbox" required>
+                    <label class="form-check-label" for="checkbox">Are you sure?</label>
+                </div>
+                <button class="btn btn-md btn-edu-secondary" type="submit">Send Request</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // tinymce text editor function
+        tinymce.init({
+        selector: 'textarea',
+        height: 400,
+        menubar: false,
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+        ],
+        });
+    </script>
+<%- include('partials/footer') %>
