@@ -432,6 +432,12 @@ a:link, a:visited{
 /* ============================================== */
 
 /* ----------- Questionnaire Styling -----------*/
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .vectorImg img {
     width: 80%;
 }

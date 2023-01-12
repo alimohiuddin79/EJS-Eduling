@@ -45,14 +45,14 @@
               <a id="user-name" class="dropdown-toggle user-name" data-bs-toggle="dropdown" aria-expanded="false" role="button" style="text-decoration: none;"><%=userName%></a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item text-center" href="/user/dashboard">Go to Dashboard</a></li>
-                  <li class="text-center mt-4"><button class="btn btn-md btn-edu-secondary" onclick="window.location.href='/logout'">Logout</button></li>
+                  <li class="text-center mt-4"><button class="btn btn-md btn-edu-secondary" onclick="window.location.href='/logout'" style="display: block;">Logout</button></li>
               </ul>
             </div>
               
               
           <% } else { %>
-              <button class="btn btn-lg btn-white nav-btn-mg" onclick="window.location.href='/login'">Login</button>
-              <button class="btn btn-lg btn-edu-primary" onclick="window.location.href='/signup'">Sign Up</button>
+              <button class="btn btn-lg btn-white nav-btn-mg" onclick="window.location.href='/login'" style="display: block;">Login</button>
+              <button class="btn btn-lg btn-edu-primary" onclick="window.location.href='/signup'" style="display: block;">Sign Up</button>
           <% } %>
         
       </div>

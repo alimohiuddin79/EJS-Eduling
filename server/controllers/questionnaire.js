@@ -64,8 +64,15 @@ const postQuestionnaire = function(req, res){
     answers.forEach(function(i){
         results[i] = (results[i] || 0) + 1;
     });
-    console.log(results);
-    res.render("questionnaire-result", {results: results});
+    if(req.isAuthenticated()){
+        const userName = req.user.name;
+        const userImg = req.user.userImg;
+        const isAdmin = req.user.admin;
+        res.render("questionnaire-result", {results: results, isAdmin: isAdmin, userName: userName, userImg: userImg, isUserOnline: true});
+    } else {
+        res.render("questionnaire-result", {results: results, isUserOnline: false});
+    }
+    // console.log(results);
 }
 
 module.exports = {getStartQuestionnaire, postStartQuestionnaire, getQuestionnaire, postQuestionnaire};

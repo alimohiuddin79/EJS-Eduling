@@ -1,44 +1,26 @@
 <%- include('partials/header') %>
     <title>Questionnaire Result</title>
 </head>
-<style>
-    /* body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-    }
-    div{
-        margin: auto 0;
-        border: 2px solid black;
-    }
-    .centered{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    } */
-</style>
 <body>
-
+    <%- include('partials/navbar') %>
     <section>
-        <div class="u-container">
+        <div class="u-container" style="height: 68vh;  overflow: scroll; overflow-x: hidden;">
             <h3 class="page-heading text-center mb-5">Quiz Result</h3>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3 col-sm-12">
                     <div class="vectorImg">
                         <img src="../assets/quizVector.png" alt="">
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="chart-box">
+                <div class="col-md-6 col-sm-12">
+                    <div class="chart-box align-items-center" style="margin: auto;">
                         <input id="result" type="hidden" value='<%= JSON.stringify(results) %>'>
                         <div class="centered">
                             <canvas id="myChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3 col-sm-12">
 
                     <div class="vectorImg">
                         <img src="../assets/quizVector2.png" alt="">
@@ -48,20 +30,19 @@
         </div>
     </section>
 
-    
 <script>
   // Set up the chart
-  var canvas = document.getElementById('myChart');
+    var canvas = document.getElementById('myChart');
     var ctx = canvas.getContext('2d');
 
     // Set the dimensions of the chart
-    var width = 360;
-    var height = 300;
+    var width = 520;
+    var height = 360;
     canvas.width = width;
     canvas.height = height;
 
     // Set the bar width and spacing
-    var barWidth = 40;
+    var barWidth = 80;
     var barSpacing = 40;
 
     // Set the font for the labels
@@ -72,14 +53,14 @@
     console.log(data);
 
     // Set the colors for the chart
-    var colors = ['#3366CC', '#DC3912', '#FF9900', '#109618'];
+    var colors = ['#36F8B2', '#D7F03B', '#459ED0', '#A46448'];
 
     // Draw the bars and labels
     var i = 0;
     var newLabel = "";
     for (var label in data) {
         // increase data value for taller bar
-        data[label] = data[label] * 20;
+        data[label] = data[label] * 60;
 
         // if label is to big then create short form
         if(label.includes(" ")){
