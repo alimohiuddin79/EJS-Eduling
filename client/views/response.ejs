@@ -12,7 +12,7 @@
     <%- include('partials/navbar') %>
     <div class="u-container" style="height: 86vh; overflow: scroll; overflow-x: hidden;">
         <% if(userType == 0){ %>
-            <% if(counsellorResponses != null){ %>
+            <% if(counsellorResponses.length != 0){ %>
                 <% counsellorResponses.forEach(function(response){ %>
                     <div class="mb-4 response-card">
                         <span class="date"><em>(<%=response.date.split(",")[0]%>)</em></span>
@@ -27,7 +27,7 @@
                 <h3 class="page-heading text-center">Responses are empty</h3>
             <% } %>
         <% } else if(userType == 1){ %>
-            <% if(studentRequests != null){ %>
+            <% if(studentRequests.length != 0){ %>
                 <% studentRequests.forEach(function(request){ %>
                     <div class="mb-4 response-card">
                         <span class="date"><em>(<%=request.date.split(",")[0]%>)</em></span>

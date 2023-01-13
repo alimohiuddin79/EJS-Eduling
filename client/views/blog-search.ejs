@@ -3,7 +3,7 @@
 </head>
 <body>
     <%-include ('partials/navbar') %>
-    <div class="u-container">
+    <div class="u-container" style="height: 82vh; overflow: scroll; overflow-x: hidden;">
         <div class="mb-4 mt-4 search-bar">
             <form action="/search/blogs" method="post">
                 <div class="input-group">
@@ -32,7 +32,7 @@
                 <% }) %>     
             </div>
         <% } else { %>
-            <h3 class="page-heading">No blogs found</h3>
+            <h3 class="page-heading text-center">No blogs found</h3>
         <% } %>
     </div>
 
