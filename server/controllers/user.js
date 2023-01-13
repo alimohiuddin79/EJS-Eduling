@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const passport = require("passport");
 const session = require("express-session");
+const nodemailer = require("nodemailer");
 
 // Signup controllers
 const getSignup = function(req, res){
@@ -12,6 +13,40 @@ const getSignup = function(req, res){
     } else {
         res.render("signup", {isUserOnline: false});
     }
+}
+
+// smtp welcome email function
+function welcomeEmail(username){
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465, //465 is secure port
+        secure: true,
+        auth: {
+            user: process.env.CONTACT_EMAIL,
+            pass: process.env.CONTACT_PASS
+        }
+    });
+
+    const textBody = `Please confirm your account registration`;
+    const htmlBody = `<h2 style="text-align: center; color: #36F8B2;">Welcome to Eduling</h2>`;
+	var mail = {
+		from: process.env.CONTACT_EMAIL, // sender address
+		to: username, // list of receivers
+		subject: "Confirmation email",
+		text: textBody,
+		html: htmlBody
+	};
+
+    // send mail with defined transport object
+    transporter.sendMail(mail, function (err, info) {
+        if(err) {
+            console.log(err);
+            res.json({ message: "message not sent: an error occured; check the server's console log" });
+        }
+        else {
+            console.log(info.messageId);
+        }
+    });
 }
 
 const postSignup = function(req, res){
@@ -27,6 +62,7 @@ const postSignup = function(req, res){
                 console.log(err);
                 res.redirect("/signup");
             } else {
+                welcomeEmail(username);
                 passport.authenticate("local")(req, res, function(){
                     res.redirect("/user/dashboard");
                 });

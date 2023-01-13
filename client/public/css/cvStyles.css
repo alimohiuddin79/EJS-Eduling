@@ -1,0 +1,72 @@
+ /* ----------- CV Styling -----------*/
+body {
+    background: rgb(204, 204, 204);
+}
+
+page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+}
+
+page[size="A4"] {
+    width: 21cm;
+    height: 29.7cm;
+    }
+
+.header-row {
+padding: 10px;
+}
+
+.rNames {
+display: flex;
+align-items: center;
+}
+
+.rLine {
+height: 3px !important;
+color: #000;
+}
+
+@page {
+margin: 0;
+}
+
+@page {
+size: portrait;
+}
+
+/* page {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+  }
+  
+  page[size="A4"] {
+    width: 21cm;
+    height: 29.7cm;
+  } */
+  
+  
+  @media print {
+  
+    body,
+    page {
+      margin: 0;
+      box-shadow: 0;
+    }
+  }
+
+/* @media print {
+body {
+    -webkit-print-color-adjust: exact;
+    -moz-print-color-adjust: exact;
+    -ms-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+} */
+ /* ----------- CV Styling -----------*/
