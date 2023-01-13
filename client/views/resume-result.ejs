@@ -6,85 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <!-- cvStyles CSS -->
-    <!-- <link rel="stylesheet" href="../css/cvStyles.css"> -->
     <title>Resume Result</title>
 </head>
 <body>
     
 <style>
-    /* *{
-        padding: 0;
+    
+    body {
+        background: rgb(204, 204, 204);
+    }
+
+    page {
+        background: white;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 0.5cm;
+        box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+    }
+
+    page[size="A4"] {
+        width: 21cm;
+        height: 29.7cm;
+        }
+
+
+    @page {
         margin: 0;
-    }
-    body{
-        background-color: black;
-        display: flex;
-        align-items: center;
-        justify-items: center;
-    }
-    hr{
-        width: 100%;
-        color: black;
-    }
-    .main-container {
-        margin: auto;
-    }
-    .container {
-        width: 595px;
-        height: 842px;
-        background-color: white;
-    }
-    .inner-div-1{
-        float: left;
-    }
-    .inner-div-2{
-        float: right;
-    } */
-     /* ----------- CV Styling -----------*/
-body {
-    background: rgb(204, 204, 204);
-}
-
-page {
-    background: white;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 0.5cm;
-    box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
-}
-
-page[size="A4"] {
-    width: 21cm;
-    height: 29.7cm;
+        padding: 16px 28px;
     }
 
-
-@page {
-margin: 0;
-padding: 16px 28px;
-}
-
-@page {
-size: portrait;
-}  
+    @page {
+        size: portrait;
+    }  
 
 
-@media print {
-body {
-    -webkit-print-color-adjust: exact;
-    -moz-print-color-adjust: exact;
-    -ms-print-color-adjust: exact;
-    print-color-adjust: exact;
-}
-}
- /* ----------- CV Styling -----------*/
+    @media print {
+        body {
+            -webkit-print-color-adjust: exact;
+            -moz-print-color-adjust: exact;
+            -ms-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+    }
 </style>
+
 <div class="main-container">
     <page size="A4">
         <section>
             <div class="container-fluid">
-                <!-- header-row -->
                 <div class="row ">
                     <div class="col">
                         <h3 class="text-center" style="padding-top: 62px;"><%=name%></h3>
