@@ -1,3 +1,5 @@
+const Counters = require("../models/counters");
+
 // Resume Builder controllers
 const getResume = function(req, res){
     if(req.isAuthenticated()){
@@ -11,6 +13,12 @@ const getResume = function(req, res){
 }
 
 const postResume = function(req, res){
+    //increase resume create count
+    Counters.findOneAndUpdate({}, { $inc: { resumeCount: 1 } }, function(err){
+        if(err){
+          console.log(err);
+        }
+      });
     res.render("resume-result", {
         name: req.body.user_name,
         email: req.body.user_email,

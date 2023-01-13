@@ -18,6 +18,14 @@ const getHireCounsellorById = app.get("/hirecounsellor/:counsellorId", function(
 });
 
 const postHireCounsellorById = app.post("/hirecounsellor/:counsellorId", function(req, res){
+
+    // increase hire count
+    Counters.findOneAndUpdate({}, { $inc: { hireCount: 1 } }, function(err){
+        if(err){
+          console.log(err);
+        }
+      });
+
     if(req.isAuthenticated() && req.user.type == 0){
         const userName = req.user.name;
         const userImg = req.user.userImg;

@@ -3,6 +3,8 @@ const fs = require("fs");
 const multer = require("multer");
 const Blog = require("../models/blog");
 const path = require("path");
+const Counters = require("../models/counters");
+const { log } = require("console");
 
 const app = express.Router();
 
@@ -53,7 +55,14 @@ const getBlogs = app.get("/blogs", function(req, res){
 // get request to open specific blog
 const getBlogById = app.get("/blogs/:blogId", function(req, res){
   const blogId = req.params.blogId;
-  
+
+  // increase blog count
+  Counters.findOneAndUpdate({}, { $inc: { blogCount: 1 } }, function(err){
+    if(err){
+      console.log(err);
+    }
+  });
+
   Blog.findById(blogId, function(err, foundBlog){
     if(req.isAuthenticated()){
       const userName = req.user.name;
