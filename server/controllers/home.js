@@ -13,7 +13,6 @@ const getHome = function(req, res){
                     console.log(err);
                 } else {
                     const otherCounters = counters;
-                    console.log(counters);
                     if(req.isAuthenticated()){
                         const userName = req.user.name;
                         const userImg = req.user.userImg;
